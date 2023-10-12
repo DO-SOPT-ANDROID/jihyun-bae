@@ -24,4 +24,7 @@
     <string name="sign_up_success">회원가입에 성공하였습니다!</string>
     <string name="sign_up_failed">입력한 정보를 확인해 주세요!</string>
 
+    <!-- main(my page) -->
+    <string name="my_page">MY PAGE</string>
+
 </resources>
