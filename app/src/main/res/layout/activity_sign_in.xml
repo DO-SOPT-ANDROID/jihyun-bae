@@ -57,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing4"
             android:hint="@string/sign_id_hint"
+            android:inputType="text"
             android:textAppearance="@style/TextAppearance.Body"
             app:layout_constraintEnd_toEndOf="@+id/tv_sign_in_title"
             app:layout_constraintStart_toStartOf="@+id/tv_sign_in_id"
