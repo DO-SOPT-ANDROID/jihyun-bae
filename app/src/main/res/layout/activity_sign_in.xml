@@ -60,8 +60,8 @@
                     android:layout_marginTop="45dp"
                     android:text="@string/sign_id"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@+id/tv_sign_in_title"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sign_in_title" />
+                    app:layout_constraintStart_toStartOf="@id/tv_sign_in_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_in_title" />
 
                 <EditText
                     android:id="@+id/et_sign_in_id"
