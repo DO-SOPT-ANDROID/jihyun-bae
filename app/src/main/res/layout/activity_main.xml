@@ -1,18 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.main.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello DO SOPT!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.main.MainActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/spacing30" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/spacing30" />
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing30"
+            android:gravity="center"
+            android:text="@string/my_page"
+            android:textAppearance="@style/TextAppearance.LargeTitle"
+            app:layout_constraintEnd_toStartOf="@+id/gl_end"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_main_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing24"
+            android:src="@drawable/ic_profile"
+            app:layout_constraintDimensionRatio="1"
+            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_title" />
+
+        <TextView
+            android:id="@+id/tv_main_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing14"
+            android:textAppearance="@style/TextAppearance.Headline"
+            app:layout_constraintBottom_toTopOf="@id/tv_main_mbti"
+            app:layout_constraintStart_toEndOf="@+id/iv_main_profile"
+            app:layout_constraintTop_toTopOf="@+id/iv_main_profile"
+            tools:text="닉네임" />
+
+        <TextView
+            android:id="@+id/tv_main_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing4"
+            android:textAppearance="@style/TextAppearance.Body"
+            android:textColor="@color/gray_400"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_main_nickname"
+            app:layout_constraintStart_toEndOf="@+id/tv_main_nickname"
+            app:layout_constraintTop_toTopOf="@+id/tv_main_nickname"
+            tools:text="id" />
+
+        <TextView
+            android:id="@+id/tv_main_mbti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing4"
+            android:textAppearance="@style/TextAppearance.Body"
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_profile"
+            app:layout_constraintStart_toStartOf="@+id/tv_main_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/tv_main_id"
+            tools:text="MBTI" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
