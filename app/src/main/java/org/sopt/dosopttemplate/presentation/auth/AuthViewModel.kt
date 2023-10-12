@@ -15,6 +15,12 @@ class AuthViewModel() : ViewModel() {
         }
     }
 
+    fun isSignInEnabled(inputId: String, inputPassword: String): Boolean {
+        return userInfo?.run {
+            id == inputId && password == inputPassword
+        } ?: false
+    }
+
     companion object {
         private const val MIN_ID_LENGTH = 6
         private const val MAX_ID_LENGTH = 10
