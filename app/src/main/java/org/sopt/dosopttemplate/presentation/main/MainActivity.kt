@@ -1,7 +1,8 @@
-package org.sopt.dosopttemplate
+package org.sopt.dosopttemplate.presentation.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import org.sopt.dosopttemplate.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
