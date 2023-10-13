@@ -4,6 +4,12 @@
 
 ex) [1주차 도전 과제 노션 링크](https://council.busan.go.kr/council/freeboard/52658)
 
+#### 과제 정리 🐸
+[DO SOPT](https://jihyunniiii.notion.site/DO-SOPT-e08ecee8c78348bb8c3193376b782dd5?pvs=4)
+
+#### 1️⃣ 1주차
+[Activity 생명 주기](https://jihyunniiii.notion.site/Activity-eb6a15649e00477088bfe713b8407612?pvs=4)
+
 ## 템플릿 설명
 레포지터리에는 하나의 브랜치가 있습니다.
 
