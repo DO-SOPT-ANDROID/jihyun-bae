@@ -13,6 +13,7 @@
     <string name="sign_in_sign_up"><u>회원가입하기</u></string>
     <string name="sign_in_success">로그인에 성공했습니다!</string>
     <string name="sign_in_failed">ID와 PW를 확인해 주세요!</string>
+    <string name="sign_in_auto_login_success">자동로그인 되었습니다!</string>
 
     <!--sign up-->
     <string name="sign_up">SIGN UP</string>
