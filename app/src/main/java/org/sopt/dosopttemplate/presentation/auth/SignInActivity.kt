@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -24,6 +25,18 @@ import org.sopt.dosopttemplate.util.extension.showToast
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+    private var backPressedTime = MainActivity.INIT_BACK_PRESSED_TIME
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (System.currentTimeMillis() - backPressedTime <= MainActivity.DELAY_TIME) {
+                finish()
+            } else {
+                backPressedTime = System.currentTimeMillis()
+                showToast(getString(R.string.double_back_press_message))
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,6 +46,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         setActivityResultLauncher()
         addListeners()
         setAutoLogin()
+        finishOnDoubleBackPress()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -78,6 +92,10 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
             showToast(getString(R.string.sign_in_auto_login_success))
             moveToMain()
         }
+    }
+
+    private fun finishOnDoubleBackPress() {
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
     private fun moveToMain() {
