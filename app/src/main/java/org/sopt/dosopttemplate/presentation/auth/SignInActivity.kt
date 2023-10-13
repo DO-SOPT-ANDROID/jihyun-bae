@@ -7,7 +7,9 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
+import org.sopt.dosopttemplate.data.datasource.local.DoSoptDataSource
 import org.sopt.dosopttemplate.databinding.ActivitySignInBinding
 import org.sopt.dosopttemplate.presentation.auth.SignUpActivity.Companion.USER_INFO
 import org.sopt.dosopttemplate.presentation.main.MainActivity
@@ -18,6 +20,7 @@ import org.sopt.dosopttemplate.util.extension.hideKeyboard
 import org.sopt.dosopttemplate.util.extension.showSnackbar
 import org.sopt.dosopttemplate.util.extension.showToast
 
+@AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel: AuthViewModel by viewModels()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
@@ -29,6 +32,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
 
         setActivityResultLauncher()
         addListeners()
+        setAutoLogin()
     }
 
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
@@ -56,6 +60,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                 )
             ) {
                 showToast(getString(R.string.sign_in_success))
+                viewModel.saveAutoLoginInfo()
                 moveToMain()
             } else {
                 showToast(getString(R.string.sign_in_failed))
@@ -67,9 +72,16 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         }
     }
 
+    private fun setAutoLogin() {
+        val doSoptDataSource = DoSoptDataSource(this)
+        if (doSoptDataSource.isLogin) {
+            showToast(getString(R.string.sign_in_auto_login_success))
+            moveToMain()
+        }
+    }
+
     private fun moveToMain() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(USER_INFO, viewModel.userInfo)
         startActivity(intent)
         finish()
     }

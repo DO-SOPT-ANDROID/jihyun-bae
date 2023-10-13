@@ -1,9 +1,15 @@
 package org.sopt.dosopttemplate.presentation.auth
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import org.sopt.dosopttemplate.data.datasource.local.DoSoptDataSource
 import org.sopt.dosopttemplate.presentation.model.UserInfo
+import javax.inject.Inject
 
-class AuthViewModel() : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val doSoptDataSource: DoSoptDataSource
+) : ViewModel() {
     var userInfo: UserInfo? = null
 
     fun isSignUpEnabled(userInfo: UserInfo): Boolean {
@@ -19,6 +25,17 @@ class AuthViewModel() : ViewModel() {
         return userInfo?.run {
             id == inputId && password == inputPassword
         } ?: false
+    }
+
+    fun saveAutoLoginInfo() {
+        with(doSoptDataSource) {
+            isLogin = true
+            userInfo?.let {
+                userId = it.id
+                userNickname = it.nickname
+                userMBTI = it.mbti
+            }
+        }
     }
 
     companion object {
