@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/background_rect_12"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/spacing20" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing20" />
+
+            <ImageView
+                android:id="@+id/iv_logout_dialog_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_sad"
+                app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_start"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_logout_dialog_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/logout"
+                android:textAppearance="@style/TextAppearance.Title"
+                android:textColor="@color/gray_600"
+                app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/iv_logout_dialog_icon" />
+
+            <TextView
+                android:id="@+id/tv_logout_dialog_context"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/logout_dialog_context"
+                android:textAppearance="@style/TextAppearance.Body"
+                android:textColor="@color/gray_400"
+                app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_logout_dialog_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_logout_dialog_yes"
+                style="@style/Widget.Material.Button.Basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="@dimen/spacing20"
+                android:height="44dp"
+                android:text="@string/dialog_yes"
+                android:textAppearance="@style/TextAppearance.Headline"
+                android:textColor="@color/gray_400"
+                app:backgroundTint="@color/gray_200"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_logout_dialog_no"
+                app:layout_constraintStart_toStartOf="@id/gl_start"
+                app:layout_constraintTop_toBottomOf="@id/tv_logout_dialog_context" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_logout_dialog_no"
+                style="@style/Widget.Material.Button.Basic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:height="44dp"
+                android:text="@string/dialog_no"
+                android:textAppearance="@style/TextAppearance.Headline"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/main_2"
+                app:cornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_logout_dialog_yes"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                app:layout_constraintStart_toEndOf="@+id/btn_logout_dialog_yes"
+                app:layout_constraintTop_toTopOf="@+id/btn_logout_dialog_yes" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
