@@ -28,4 +28,10 @@
     <!-- main(my page) -->
     <string name="my_page">MY PAGE</string>
 
+    <!-- logout -->
+    <string name="logout">로그아웃</string>
+    <string name="logout_dialog_context">정말로 로그아웃 하실건가요?</string>
+    <string name="dialog_yes">네</string>
+    <string name="dialog_no">아니오</string>
+
 </resources>
