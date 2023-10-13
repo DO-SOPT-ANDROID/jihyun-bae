@@ -13,6 +13,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         binding.lifecycleOwner = this
 
         initLayout()
+        addListeners()
     }
 
     private fun initLayout() {
@@ -22,5 +23,19 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
             tvMainId.text = doSoptDataSource.userId
             tvMainMbti.text = doSoptDataSource.userMBTI
         }
+    }
+
+    private fun addListeners() {
+        binding.tvMainLogout.setOnClickListener {
+            showLogoutDialog()
+        }
+    }
+
+    private fun showLogoutDialog(){
+        LogoutDialog().show(supportFragmentManager, DIALOG)
+    }
+
+    companion object {
+        const val DIALOG = "dialog"
     }
 }
