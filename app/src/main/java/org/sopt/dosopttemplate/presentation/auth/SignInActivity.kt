@@ -10,11 +10,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.datasource.local.DoSoptDataSource
 import org.sopt.dosopttemplate.databinding.ActivitySignInBinding
 import org.sopt.dosopttemplate.presentation.auth.SignUpActivity.Companion.USER_INFO
 import org.sopt.dosopttemplate.presentation.main.MainActivity
-import org.sopt.dosopttemplate.presentation.model.UserInfo
+import org.sopt.dosopttemplate.presentation.model.User
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.getCompatibleParcelableExtra
 import org.sopt.dosopttemplate.util.extension.hideKeyboard
@@ -58,8 +57,8 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
                 if (activityResult.resultCode == RESULT_OK) {
-                    viewModel.userInfo =
-                        activityResult.data?.getCompatibleParcelableExtra<UserInfo>(USER_INFO)
+                    viewModel.user =
+                        activityResult.data?.getCompatibleParcelableExtra<User>(USER_INFO)?.toUser()
                             ?: return@registerForActivityResult
                     binding.root.showSnackbar(getString(R.string.sign_up_success))
                 }
@@ -74,7 +73,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
                 )
             ) {
                 showToast(getString(R.string.sign_in_success))
-                viewModel.saveAutoLoginInfo()
+                viewModel.setAutoLogin()
                 moveToMain()
             } else {
                 showToast(getString(R.string.sign_in_failed))
@@ -87,8 +86,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
 
     private fun setAutoLogin() {
-        val doSoptDataSource = DoSoptDataSource(this)
-        if (doSoptDataSource.isLogin) {
+        if (viewModel.getAutoLogin()) {
             showToast(getString(R.string.sign_in_auto_login_success))
             moveToMain()
         }
