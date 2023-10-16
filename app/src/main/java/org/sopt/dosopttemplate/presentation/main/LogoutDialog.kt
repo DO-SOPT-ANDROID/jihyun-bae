@@ -32,8 +32,9 @@ class LogoutDialog(
     }
 
     private fun moveToSignIn() {
-        val intent = Intent(requireContext(), SignInActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
+        Intent(requireContext(), SignInActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(this)
+        }
     }
 }
