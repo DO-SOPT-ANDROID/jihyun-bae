@@ -10,4 +10,5 @@ class MainViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
     fun getUserInfo() = userRepository.getUserInfo()
+    fun clearUserDataSource() = userRepository.clearUserDataSource()
 }
