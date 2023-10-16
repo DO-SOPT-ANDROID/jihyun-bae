@@ -28,7 +28,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
         super.onCreate(savedInstanceState)
 
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
         initLayout()
         addListeners()

@@ -13,5 +13,6 @@ abstract class BindingActivity<B : ViewDataBinding>(@LayoutRes private val layou
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, layoutResId)
+        binding.lifecycleOwner = this
     }
 }
