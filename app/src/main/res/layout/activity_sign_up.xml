@@ -49,8 +49,8 @@
                     android:gravity="center"
                     android:text="@string/sign_up"
                     android:textAppearance="@style/TextAppearance.LargeTitle"
-                    app:layout_constraintEnd_toStartOf="@+id/gl_end"
-                    app:layout_constraintStart_toStartOf="@+id/gl_start"
+                    app:layout_constraintEnd_toStartOf="@id/gl_end"
+                    app:layout_constraintStart_toStartOf="@id/gl_start"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -60,8 +60,8 @@
                     android:layout_marginTop="45dp"
                     android:text="@string/sign_id"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@+id/tv_sign_up_title"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_title" />
+                    app:layout_constraintStart_toStartOf="@id/tv_sign_up_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_title" />
 
                 <EditText
                     android:id="@+id/et_sign_up_id"
@@ -71,9 +71,9 @@
                     android:hint="@string/sign_id_hint"
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.Body"
-                    app:layout_constraintEnd_toEndOf="@+id/tv_sign_up_title"
-                    app:layout_constraintStart_toStartOf="@+id/tv_sign_up_id"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_sign_up_id" />
+                    app:layout_constraintEnd_toEndOf="@id/tv_sign_up_title"
+                    app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id" />
 
                 <TextView
                     android:id="@+id/tv_sign_up_password"
@@ -82,8 +82,8 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_password"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_id"
-                    app:layout_constraintTop_toBottomOf="@+id/et_sign_up_id" />
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_id"
+                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_id" />
 
                 <EditText
                     android:id="@+id/et_sign_up_password"
@@ -93,8 +93,8 @@
                     android:hint="@string/sign_password_hint"
                     android:inputType="textPassword"
                     android:textAppearance="@style/TextAppearance.Body"
-                    app:layout_constraintEnd_toEndOf="@+id/et_sign_up_id"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_id"
+                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_id"
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_id"
                     app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password" />
 
                 <TextView
@@ -104,8 +104,8 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_up_nickname"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_password"
-                    app:layout_constraintTop_toBottomOf="@+id/et_sign_up_password" />
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_password"
+                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_password" />
 
                 <EditText
                     android:id="@+id/et_sign_up_nickname"
@@ -115,8 +115,8 @@
                     android:hint="@string/sign_up_nickname_hint"
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.Body"
-                    app:layout_constraintEnd_toEndOf="@+id/et_sign_up_password"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_password"
+                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_password"
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_password"
                     app:layout_constraintTop_toBottomOf="@id/tv_sign_up_nickname" />
 
                 <TextView
@@ -126,8 +126,8 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_up_mbti"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_nickname"
-                    app:layout_constraintTop_toBottomOf="@+id/et_sign_up_nickname" />
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_nickname"
+                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_nickname" />
 
                 <EditText
                     android:id="@+id/et_sign_up_mbti"
@@ -139,8 +139,8 @@
                     android:inputType="text"
                     android:textAppearance="@style/TextAppearance.Body"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/et_sign_up_nickname"
-                    app:layout_constraintStart_toStartOf="@+id/et_sign_up_nickname"
+                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_nickname"
+                    app:layout_constraintStart_toStartOf="@id/et_sign_up_nickname"
                     app:layout_constraintTop_toBottomOf="@id/tv_sign_up_mbti" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
