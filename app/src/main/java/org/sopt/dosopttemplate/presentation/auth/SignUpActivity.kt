@@ -15,7 +15,7 @@ import org.sopt.dosopttemplate.util.extension.showSnackbar
 
 @AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel by viewModels<AuthViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
