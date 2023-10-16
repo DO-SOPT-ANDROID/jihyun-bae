@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignUpBinding
-import org.sopt.dosopttemplate.presentation.model.UserInfo
+import org.sopt.dosopttemplate.domain.model.User
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.hideKeyboard
 import org.sopt.dosopttemplate.util.extension.showSnackbar
@@ -33,7 +33,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     private fun addListeners() {
         binding.btnSignUpSignUp.setOnClickListener {
             val userInfo = with(binding) {
-                UserInfo(
+                User(
                     etSignUpId.text.toString(),
                     etSignUpPassword.text.toString(),
                     etSignUpNickname.text.toString(),
@@ -41,14 +41,14 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                 )
             }
             if (viewModel.isSignUpEnabled(userInfo)) {
-                moveToSignIn(userInfo)
+                moveToSignIn(userInfo.toParcelizeUser())
             } else {
                 binding.root.showSnackbar(getString(R.string.sign_up_failed))
             }
         }
     }
 
-    private fun moveToSignIn(userInfo: UserInfo) {
+    private fun moveToSignIn(userInfo: org.sopt.dosopttemplate.presentation.model.User) {
         val intent = Intent(this, SignInActivity::class.java)
         intent.putExtra(USER_INFO, userInfo)
         setResult(RESULT_OK, intent)
