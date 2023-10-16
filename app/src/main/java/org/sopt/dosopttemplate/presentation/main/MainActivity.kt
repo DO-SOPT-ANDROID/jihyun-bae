@@ -51,7 +51,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun showLogoutDialog() {
-        LogoutDialog().show(supportFragmentManager, DIALOG)
+        LogoutDialog({ viewModel.clearUserDataSource() }).show(supportFragmentManager, DIALOG)
     }
 
     private fun finishOnDoubleBackPress() {
