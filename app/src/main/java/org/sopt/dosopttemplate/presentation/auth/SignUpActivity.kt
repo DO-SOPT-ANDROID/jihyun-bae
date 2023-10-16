@@ -20,7 +20,6 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
         super.onCreate(savedInstanceState)
 
         binding.viewModel = viewModel
-        binding.lifecycleOwner = this
 
         addListeners()
     }

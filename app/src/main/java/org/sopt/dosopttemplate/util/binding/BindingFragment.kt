@@ -24,6 +24,11 @@ abstract class BindingFragment<B : ViewDataBinding>(@LayoutRes private val layou
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this.viewLifecycleOwner
+    }
+
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()

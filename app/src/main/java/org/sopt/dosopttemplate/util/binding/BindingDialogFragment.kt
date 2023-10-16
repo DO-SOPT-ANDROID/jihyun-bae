@@ -24,6 +24,11 @@ abstract class BindingDialogFragment<B : ViewDataBinding>(@LayoutRes private val
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this.viewLifecycleOwner
+    }
+
     override fun onStart() {
         super.onStart()
         dialog?.window?.setLayout(
