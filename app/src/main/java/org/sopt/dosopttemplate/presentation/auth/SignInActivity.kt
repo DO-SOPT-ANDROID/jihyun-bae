@@ -22,7 +22,7 @@ import org.sopt.dosopttemplate.util.extension.showToast
 
 @AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel: AuthViewModel by viewModels()
+    private val viewModel by viewModels<AuthViewModel>()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var backPressedTime = MainActivity.INIT_BACK_PRESSED_TIME
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
