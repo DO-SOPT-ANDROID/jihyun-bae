@@ -34,8 +34,8 @@
             android:gravity="center"
             android:text="@string/my_page"
             android:textAppearance="@style/TextAppearance.LargeTitle"
-            app:layout_constraintEnd_toStartOf="@+id/gl_end"
-            app:layout_constraintStart_toStartOf="@+id/gl_start"
+            app:layout_constraintEnd_toStartOf="@id/gl_end"
+            app:layout_constraintStart_toStartOf="@id/gl_start"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -45,8 +45,8 @@
             android:layout_marginTop="@dimen/spacing24"
             android:src="@drawable/ic_profile"
             app:layout_constraintDimensionRatio="1"
-            app:layout_constraintStart_toStartOf="@+id/gl_start"
-            app:layout_constraintTop_toBottomOf="@+id/tv_main_title" />
+            app:layout_constraintStart_toStartOf="@id/gl_start"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_title" />
 
         <TextView
             android:id="@+id/tv_main_nickname"
@@ -55,8 +55,8 @@
             android:layout_marginStart="@dimen/spacing14"
             android:textAppearance="@style/TextAppearance.Headline"
             app:layout_constraintBottom_toTopOf="@id/tv_main_mbti"
-            app:layout_constraintStart_toEndOf="@+id/iv_main_profile"
-            app:layout_constraintTop_toTopOf="@+id/iv_main_profile"
+            app:layout_constraintStart_toEndOf="@id/iv_main_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_main_profile"
             tools:text="닉네임" />
 
         <TextView
@@ -66,9 +66,9 @@
             android:layout_marginStart="@dimen/spacing4"
             android:textAppearance="@style/TextAppearance.Body"
             android:textColor="@color/gray_400"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_main_nickname"
-            app:layout_constraintStart_toEndOf="@+id/tv_main_nickname"
-            app:layout_constraintTop_toTopOf="@+id/tv_main_nickname"
+            app:layout_constraintBottom_toBottomOf="@id/tv_main_nickname"
+            app:layout_constraintStart_toEndOf="@id/tv_main_nickname"
+            app:layout_constraintTop_toTopOf="@id/tv_main_nickname"
             tools:text="id" />
 
         <TextView
@@ -78,8 +78,8 @@
             android:layout_marginTop="@dimen/spacing4"
             android:textAppearance="@style/TextAppearance.Body"
             app:layout_constraintBottom_toBottomOf="@id/iv_main_profile"
-            app:layout_constraintStart_toStartOf="@+id/tv_main_nickname"
-            app:layout_constraintTop_toBottomOf="@+id/tv_main_id"
+            app:layout_constraintStart_toStartOf="@id/tv_main_nickname"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_id"
             tools:text="MBTI" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
