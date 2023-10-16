@@ -49,10 +49,11 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
     }
 
     private fun moveToSignIn(userInfo: org.sopt.dosopttemplate.presentation.model.User) {
-        val intent = Intent(this, SignInActivity::class.java)
-        intent.putExtra(USER_INFO, userInfo)
-        setResult(RESULT_OK, intent)
-        finish()
+        Intent(this@SignUpActivity, SignInActivity::class.java).apply {
+            putExtra(USER_INFO, userInfo)
+            setResult(RESULT_OK, this)
+            finish()
+        }
     }
 
     companion object {
