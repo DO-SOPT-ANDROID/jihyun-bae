@@ -2,13 +2,16 @@ package org.sopt.dosopttemplate.presentation.main
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.data.datasource.local.DoSoptDataSource
 import org.sopt.dosopttemplate.databinding.ActivityMainBinding
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.showToast
 
+@AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
+    private val viewModel by viewModels<MainViewModel>()
     private var backPressedTime = INIT_BACK_PRESSED_TIME
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
@@ -24,6 +27,7 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
         initLayout()
@@ -32,11 +36,11 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     }
 
     private fun initLayout() {
-        val doSoptDataSource = DoSoptDataSource(this)
+        val userInfo = viewModel.getUserInfo()
         with(binding) {
-            tvMainNickname.text = doSoptDataSource.userNickname
-            tvMainId.text = doSoptDataSource.userId
-            tvMainMbti.text = doSoptDataSource.userMBTI
+            tvMainNickname.text = userInfo.nickname
+            tvMainId.text = userInfo.id
+            tvMainMbti.text = userInfo.mbti
         }
     }
 
