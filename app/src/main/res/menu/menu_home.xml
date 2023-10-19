@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_do_android"
+        android:icon="@drawable/ic_do_android_white_24"
+        android:title="@string/menu_home_do_android" />
+
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home_white_24"
+        android:title="@string/menu_home_home" />
+
+    <item
+        android:id="@+id/menu_my_page"
+        android:icon="@drawable/ic_my_page_white_24"
+        android:title="@string/menu_home_my_page" />
+
+</menu>
