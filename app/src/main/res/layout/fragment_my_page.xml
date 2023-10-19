@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="org.sopt.dosopttemplate.presentation.main.MainViewModel" />
+            type="org.sopt.dosopttemplate.presentation.myPage.MyPageViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.main.MainActivity">
+        tools:context=".presentation.myPage.MyPageFragment">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/gl_start"
@@ -30,7 +30,7 @@
             app:layout_constraintGuide_end="@dimen/spacing30" />
 
         <TextView
-            android:id="@+id/tv_main_title"
+            android:id="@+id/tv_my_page_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing30"
@@ -42,61 +42,61 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/iv_main_profile"
+            android:id="@+id/iv_my_page_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing24"
-            android:src="@drawable/ic_profile"
+            android:src="@drawable/ic_profile_24"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_title" />
 
         <TextView
-            android:id="@+id/tv_main_nickname"
+            android:id="@+id/tv_my_page_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing14"
             android:textAppearance="@style/TextAppearance.Headline"
-            app:layout_constraintBottom_toTopOf="@id/tv_main_mbti"
-            app:layout_constraintStart_toEndOf="@id/iv_main_profile"
-            app:layout_constraintTop_toTopOf="@id/iv_main_profile"
+            app:layout_constraintBottom_toTopOf="@id/tv_my_page_mbti"
+            app:layout_constraintStart_toEndOf="@id/iv_my_page_profile"
+            app:layout_constraintTop_toTopOf="@id/iv_my_page_profile"
             tools:text="닉네임" />
 
         <TextView
-            android:id="@+id/tv_main_id"
+            android:id="@+id/tv_my_page_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing4"
             android:textAppearance="@style/TextAppearance.Body"
             android:textColor="@color/gray_400"
-            app:layout_constraintBottom_toBottomOf="@id/tv_main_nickname"
-            app:layout_constraintStart_toEndOf="@id/tv_main_nickname"
-            app:layout_constraintTop_toTopOf="@id/tv_main_nickname"
+            app:layout_constraintBottom_toBottomOf="@id/tv_my_page_nickname"
+            app:layout_constraintStart_toEndOf="@id/tv_my_page_nickname"
+            app:layout_constraintTop_toTopOf="@id/tv_my_page_nickname"
             tools:text="id" />
 
         <TextView
-            android:id="@+id/tv_main_mbti"
+            android:id="@+id/tv_my_page_mbti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing4"
             android:textAppearance="@style/TextAppearance.Body"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_profile"
-            app:layout_constraintStart_toStartOf="@id/tv_main_nickname"
-            app:layout_constraintTop_toBottomOf="@id/tv_main_id"
+            app:layout_constraintBottom_toBottomOf="@id/iv_my_page_profile"
+            app:layout_constraintStart_toStartOf="@id/tv_my_page_nickname"
+            app:layout_constraintTop_toBottomOf="@id/tv_my_page_id"
             tools:text="MBTI" />
 
         <View
-            android:id="@+id/view_main_line"
+            android:id="@+id/view_my_page_line"
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:layout_marginTop="@dimen/spacing20"
             android:background="@color/gray_100"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_main_profile" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_my_page_profile" />
 
         <TextView
-            android:id="@+id/tv_main_logout"
+            android:id="@+id/tv_my_page_logout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -105,7 +105,7 @@
             android:textAppearance="@style/TextAppearance.Body"
             app:layout_constraintEnd_toEndOf="@id/gl_end"
             app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@id/view_main_line" />
+            app:layout_constraintTop_toBottomOf="@id/view_my_page_line" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
