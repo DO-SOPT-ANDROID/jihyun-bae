@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">DoSoptTemplate</string>
 
+    <!-- bnv menu -->
+    <string name="menu_home_do_android">DO ANDROID</string>
+    <string name="menu_home_home">홈</string>
+    <string name="menu_home_my_page">마이페이지</string>
+
+    <!-- message -->
+    <string name="double_back_press_message">뒤로 가기 버튼을 한 번 더 누르시면 종료됩니다.</string>
+
     <!--sign-->
     <string name="sign_id">ID</string>
     <string name="sign_id_hint">ID를 입력해 주세요.</string>
@@ -25,7 +33,7 @@
     <string name="sign_up_success">회원가입에 성공하였습니다!</string>
     <string name="sign_up_failed">입력한 정보를 확인해 주세요!</string>
 
-    <!-- main(my page) -->
+    <!-- my page -->
     <string name="my_page">MY PAGE</string>
 
     <!-- logout -->
@@ -33,7 +41,5 @@
     <string name="logout_dialog_context">정말로 로그아웃 하실건가요?</string>
     <string name="dialog_yes">네</string>
     <string name="dialog_no">아니오</string>
-
-    <string name="double_back_press_message">뒤로 가기 버튼을 한 번 더 누르시면 종료됩니다.</string>
 
 </resources>
