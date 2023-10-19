@@ -11,8 +11,8 @@ import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignInBinding
+import org.sopt.dosopttemplate.presentation.HomeActivity
 import org.sopt.dosopttemplate.presentation.auth.SignUpActivity.Companion.USER_INFO
-import org.sopt.dosopttemplate.presentation.main.MainActivity
 import org.sopt.dosopttemplate.presentation.model.User
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.getCompatibleParcelableExtra
@@ -24,10 +24,10 @@ import org.sopt.dosopttemplate.util.extension.showToast
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var backPressedTime = MainActivity.INIT_BACK_PRESSED_TIME
+    private var backPressedTime = HomeActivity.INIT_BACK_PRESSED_TIME
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (System.currentTimeMillis() - backPressedTime <= MainActivity.DELAY_TIME) {
+            if (System.currentTimeMillis() - backPressedTime <= HomeActivity.DELAY_TIME) {
                 finish()
             } else {
                 backPressedTime = System.currentTimeMillis()
@@ -96,7 +96,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
 
     private fun moveToMain() {
-        Intent(this@SignInActivity, MainActivity::class.java).apply {
+        Intent(this@SignInActivity, HomeActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(this)
             finish()

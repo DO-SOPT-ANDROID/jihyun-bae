@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.presentation.main
+package org.sopt.dosopttemplate.presentation.myPage
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import org.sopt.dosopttemplate.presentation.auth.SignInActivity
 import org.sopt.dosopttemplate.util.binding.BindingDialogFragment
 
 class LogoutDialog(
-    val handelYesBtn: () -> Unit
+    val handleYesBtn: () -> Unit
 ) : BindingDialogFragment<DialogLogoutBinding>(R.layout.dialog_logout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,7 +23,7 @@ class LogoutDialog(
         }
 
         binding.btnLogoutDialogYes.setOnClickListener {
-            handelYesBtn.invoke()
+            handleYesBtn.invoke()
             moveToSignIn()
             dismiss()
         }

@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_sad"
+                android:src="@drawable/ic_sad_24"
                 app:layout_constraintEnd_toStartOf="@+id/gl_end"
                 app:layout_constraintStart_toStartOf="@+id/gl_start"
                 app:layout_constraintTop_toTopOf="parent" />
