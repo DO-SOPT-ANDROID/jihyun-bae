@@ -37,6 +37,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
 
     private fun initLayout() {
         navigateTo<HomeFragment>()
+        binding.bnvHome.selectedItemId = R.id.menu_home
 
         binding.bnvHome.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
