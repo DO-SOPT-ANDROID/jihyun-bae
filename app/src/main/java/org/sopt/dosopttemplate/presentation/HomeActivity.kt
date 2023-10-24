@@ -11,6 +11,7 @@ import org.sopt.dosopttemplate.databinding.ActivityHomeBinding
 import org.sopt.dosopttemplate.presentation.doAndroid.DoAndroidFragment
 import org.sopt.dosopttemplate.presentation.home.HomeFragment
 import org.sopt.dosopttemplate.presentation.myPage.MyPageFragment
+import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.showToast
 
@@ -46,6 +47,15 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                 R.id.menu_my_page -> navigateTo<MyPageFragment>()
             }
             true
+        }
+
+        binding.bnvHome.setOnItemReselectedListener {
+            supportFragmentManager.findFragmentById(R.id.fcv_home_container)
+                ?.let { currentFragment ->
+                    if (currentFragment is ScrollableView) {
+                        currentFragment.scrollToTop()
+                    }
+                }
         }
     }
 
