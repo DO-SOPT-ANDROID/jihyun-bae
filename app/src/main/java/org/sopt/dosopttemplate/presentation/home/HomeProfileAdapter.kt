@@ -13,7 +13,9 @@ import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.type.ProfileInfoType
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
+class HomeProfileAdapter(
+    private val moveToProfileDetail: (Profile) -> Unit
+) : ListAdapter<Profile, RecyclerView.ViewHolder>(
     ItemDiffCallback<Profile>(
         onContentsTheSame = { old, new -> old == new },
         onItemsTheSame = { old, new -> old == new }
@@ -40,7 +42,8 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
     }
 
     class FriendProfileViewHolder(
-        private val binding: ItemHomeFriendProfileBinding
+        private val binding: ItemHomeFriendProfileBinding,
+        private val moveToProfileDetail: (Profile) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfile: Profile.FriendProfile) {
             with(binding) {
@@ -49,13 +52,18 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                 tvFriendProfileDescription.text = friendProfile.description
                 if (friendProfile.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
                     View.GONE
+
+                root.setOnClickListener {
+                    moveToProfileDetail(friendProfile)
+                }
             }
         }
     }
 
     class FriendProfileWithMusicViewHolder(
         private val binding: ItemHomeFriendProfileBinding,
-        private val context: Context
+        private val context: Context,
+        private val moveToProfileDetail: (Profile) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfileWithMusic: Profile.FriendProfileWithMusic) {
             binding.run {
@@ -74,13 +82,18 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                     )
                     tvProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
                 }
+
+                root.setOnClickListener {
+                    moveToProfileDetail(friendProfileWithMusic)
+                }
             }
         }
     }
 
     class FriendProfileWithBirthViewHolder(
         private val binding: ItemHomeFriendProfileBinding,
-        private val context: Context
+        private val context: Context,
+        private val moveToProfileDetail: (Profile) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfileWithBirth: Profile.FriendProfileWithBirth) {
             binding.run {
@@ -97,6 +110,10 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                     layoutProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.backgroundRes)
                     ProfileInfoType.BIRTH.contextRes?.let { tvProfileInfoContext.setText(it) }
                     tvProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
+                }
+
+                root.setOnClickListener {
+                    moveToProfileDetail(friendProfileWithBirth)
                 }
             }
         }
@@ -118,8 +135,9 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                 ItemHomeFriendProfileBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
-                    false
-                )
+                    false,
+                ),
+                moveToProfileDetail
             )
         }
 
@@ -129,7 +147,9 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                     LayoutInflater.from(
                         parent.context
                     ), parent, false
-                ), parent.context
+                ),
+                parent.context,
+                moveToProfileDetail
             )
         }
 
@@ -139,7 +159,9 @@ class HomeProfileAdapter() : ListAdapter<Profile, RecyclerView.ViewHolder>(
                     LayoutInflater.from(
                         parent.context
                     ), parent, false
-                ), parent.context
+                ),
+                parent.context,
+                moveToProfileDetail
             )
         }
 
