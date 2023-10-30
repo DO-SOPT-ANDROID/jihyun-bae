@@ -74,7 +74,7 @@
 
     <include
         android:id="@+id/include_friend_profile_info"
-        layout="@layout/view_profile_info"
+        layout="@layout/view_portrait_profile_info"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
