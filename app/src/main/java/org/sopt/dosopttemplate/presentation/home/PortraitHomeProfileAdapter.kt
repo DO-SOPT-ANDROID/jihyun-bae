@@ -13,7 +13,7 @@ import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.type.ProfileInfoType
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class HomeProfileAdapter(
+class PortraitHomeProfileAdapter(
     private val moveToProfileDetail: (Profile) -> Unit
 ) : ListAdapter<Profile, RecyclerView.ViewHolder>(
     ItemDiffCallback<Profile>(
@@ -33,9 +33,9 @@ class HomeProfileAdapter(
                     View.GONE
 
                 with(includeMyProfileInfo) {
-                    layoutProfileInfo.setBackgroundResource(ProfileInfoType.DESCRIPTION.backgroundRes)
-                    ProfileInfoType.DESCRIPTION.contextRes?.let { tvProfileInfoContext.setText(it) }
-                    tvProfileInfoIcon.setImageResource(ProfileInfoType.DESCRIPTION.iconRes)
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.DESCRIPTION.backgroundRes)
+                    ProfileInfoType.DESCRIPTION.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
+                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.DESCRIPTION.iconRes)
                 }
             }
         }
@@ -74,13 +74,13 @@ class HomeProfileAdapter(
                     View.GONE
 
                 with(includeFriendProfileInfo) {
-                    layoutProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.backgroundRes)
-                    tvProfileInfoContext.text = context.getString(
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.backgroundRes)
+                    tvPortraitProfileInfoContext.text = context.getString(
                         R.string.home_music,
                         friendProfileWithMusic.musicTitle,
                         friendProfileWithMusic.singer
                     )
-                    tvProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
+                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
                 }
 
                 root.setOnClickListener {
@@ -107,9 +107,9 @@ class HomeProfileAdapter(
                 ivFriendProfileBirth.visibility = View.VISIBLE
 
                 with(includeFriendProfileInfo) {
-                    layoutProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.backgroundRes)
-                    ProfileInfoType.BIRTH.contextRes?.let { tvProfileInfoContext.setText(it) }
-                    tvProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.backgroundRes)
+                    ProfileInfoType.BIRTH.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
+                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
                 }
 
                 root.setOnClickListener {
