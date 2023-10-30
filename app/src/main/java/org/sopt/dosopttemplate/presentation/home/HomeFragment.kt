@@ -15,7 +15,7 @@ import org.sopt.dosopttemplate.util.binding.BindingFragment
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home), ScrollableView {
     private val viewModel by viewModels<HomeViewModel>()
-    private lateinit var homeProfileAdapter: HomeProfileAdapter
+    private lateinit var portraitHomeProfileAdapter: PortraitHomeProfileAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -29,9 +29,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initLayout() {
-        homeProfileAdapter = HomeProfileAdapter(::moveToProfileDetail)
-        homeProfileAdapter.submitList(viewModel.getMockProfileList())
-        binding.rvHome.adapter = homeProfileAdapter
+        portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
+        portraitHomeProfileAdapter.submitList(viewModel.getMockProfileList())
+        binding.rvHome.adapter = portraitHomeProfileAdapter
     }
 
     private fun moveToProfileDetail(profile: Profile) {
