@@ -16,6 +16,7 @@ import org.sopt.dosopttemplate.util.binding.BindingFragment
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home), ScrollableView {
     private val viewModel by viewModels<HomeViewModel>()
     private lateinit var portraitHomeProfileAdapter: PortraitHomeProfileAdapter
+    private lateinit var landscapeHomeProfileAdapter: LandscapeHomeProfileAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -32,6 +33,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
         portraitHomeProfileAdapter.submitList(viewModel.getMockProfileList())
         binding.rvHome.adapter = portraitHomeProfileAdapter
+
+        landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail)
+        landscapeHomeProfileAdapter.submitList(viewModel.getMockProfileList())
+        binding.vpHome.adapter = landscapeHomeProfileAdapter
     }
 
     private fun moveToProfileDetail(profile: Profile) {
