@@ -33,9 +33,9 @@ class PortraitHomeProfileAdapter(
                     View.GONE
 
                 with(includeMyProfileInfo) {
-                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.DESCRIPTION.backgroundRes)
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.DESCRIPTION.portraitBackgroundRes)
                     ProfileInfoType.DESCRIPTION.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
-                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.DESCRIPTION.iconRes)
+                    ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.DESCRIPTION.iconRes)
                 }
             }
         }
@@ -74,13 +74,13 @@ class PortraitHomeProfileAdapter(
                     View.GONE
 
                 with(includeFriendProfileInfo) {
-                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.backgroundRes)
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.portraitBackgroundRes)
                     tvPortraitProfileInfoContext.text = context.getString(
                         R.string.home_music,
                         friendProfileWithMusic.musicTitle,
                         friendProfileWithMusic.singer
                     )
-                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
+                    ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
                 }
 
                 root.setOnClickListener {
@@ -107,9 +107,9 @@ class PortraitHomeProfileAdapter(
                 ivFriendProfileBirth.visibility = View.VISIBLE
 
                 with(includeFriendProfileInfo) {
-                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.backgroundRes)
+                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.portraitBackgroundRes)
                     ProfileInfoType.BIRTH.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
-                    tvPortraitProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
+                    ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
                 }
 
                 root.setOnClickListener {
