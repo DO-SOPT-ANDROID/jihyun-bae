@@ -24,6 +24,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.viewModel = viewModel
 
         initLayout()
+        initAdapter()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -46,6 +47,20 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initLayout() {
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            with(binding) {
+                rvHome.visibility = View.INVISIBLE
+                vpHome.visibility = View.VISIBLE
+            }
+        } else if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            with(binding) {
+                rvHome.visibility = View.VISIBLE
+                vpHome.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    private fun initAdapter() {
         portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
         portraitHomeProfileAdapter.submitList(viewModel.getMockProfileList())
         binding.rvHome.adapter = portraitHomeProfileAdapter
