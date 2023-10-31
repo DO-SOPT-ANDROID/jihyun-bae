@@ -1,6 +1,7 @@
 package org.sopt.dosopttemplate.presentation.home
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -23,6 +24,21 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.viewModel = viewModel
 
         initLayout()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            with(binding) {
+                rvHome.visibility = View.INVISIBLE
+                vpHome.visibility = View.VISIBLE
+            }
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            with(binding) {
+                rvHome.visibility = View.VISIBLE
+                vpHome.visibility = View.INVISIBLE
+            }
+        }
     }
 
     override fun scrollToTop() {
