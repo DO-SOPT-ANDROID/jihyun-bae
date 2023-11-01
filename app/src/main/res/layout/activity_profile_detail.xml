@@ -12,101 +12,117 @@
         android:layout_height="match_parent"
         tools:context=".presentation.profileDetail.ProfileDetailActivity">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_start"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/spacing30" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_end"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/spacing30" />
-
-        <ImageView
-            android:id="@+id/iv_profile_detail_arrow_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="34dp"
-            android:padding="@dimen/spacing12"
-            android:src="@drawable/ic_arrow_left_24"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_profile_detail_profile"
-            android:layout_width="250dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/spacing10"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1"
-            app:layout_constraintEnd_toStartOf="@+id/gl_end"
-            app:layout_constraintStart_toStartOf="@+id/gl_start"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_detail_arrow_left"
-            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize40Percent"
-            tools:src="@drawable/ic_profile_24" />
-
-        <ImageView
-            android:id="@+id/iv_profile_detail_birth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_cake_point_3_100"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_detail_profile"
-            app:layout_constraintEnd_toEndOf="@+id/iv_profile_detail_profile" />
-
-        <TextView
-            android:id="@+id/tv_profile_detail_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing10"
-            android:textAppearance="@style/TextAppearance.Title"
-            app:layout_constraintEnd_toStartOf="@+id/gl_end"
-            app:layout_constraintStart_toStartOf="@+id/gl_start"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_detail_profile"
-            tools:text="이름" />
-
-        <TextView
-            android:id="@+id/tv_profile_detail_description"
+        <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing4"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.Body"
-            android:textColor="@color/gray_400"
-            app:layout_constraintEnd_toStartOf="@+id/gl_end"
-            app:layout_constraintStart_toStartOf="@+id/gl_start"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_detail_name"
-            tools:text="상태메시지" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/iv_profile_detail_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing10"
-            android:src="@drawable/ic_music_main_4_24"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toStartOf="@+id/tv_friend_profile_music"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="@id/gl_start"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_detail_description" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingBottom="@dimen/spacing10">
 
-        <TextView
-            android:id="@+id/tv_friend_profile_music"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing10"
-            android:textAppearance="@style/TextAppearance.Body"
-            android:visibility="invisible"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintEnd_toEndOf="@id/gl_end"
-            app:layout_constraintStart_toEndOf="@+id/iv_profile_detail_music"
-            app:layout_constraintTop_toTopOf="@+id/iv_profile_detail_music"
-            tools:text="멜론뮤직" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_start"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_begin="@dimen/spacing30" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_end="@dimen/spacing30" />
+
+                <ImageView
+                    android:id="@+id/iv_profile_detail_arrow_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="34dp"
+                    android:padding="@dimen/spacing12"
+                    android:src="@drawable/ic_arrow_left_24"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_profile_detail_profile"
+                    android:layout_width="250dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/spacing10"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                    app:layout_constraintStart_toStartOf="@+id/gl_start"
+                    app:layout_constraintTop_toBottomOf="@id/iv_profile_detail_arrow_left"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize40Percent"
+                    tools:src="@drawable/ic_profile_24" />
+
+                <ImageView
+                    android:id="@+id/iv_profile_detail_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cake_point_3_100"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_profile_detail_profile"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_profile_detail_profile" />
+
+                <TextView
+                    android:id="@+id/tv_profile_detail_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing10"
+                    android:textAppearance="@style/TextAppearance.Title"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                    app:layout_constraintStart_toStartOf="@+id/gl_start"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_profile_detail_profile"
+                    tools:text="이름" />
+
+                <TextView
+                    android:id="@+id/tv_profile_detail_description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing4"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:textColor="@color/gray_400"
+                    app:layout_constraintEnd_toStartOf="@+id/gl_end"
+                    app:layout_constraintStart_toStartOf="@+id/gl_start"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_profile_detail_name"
+                    tools:text="상태메시지" />
+
+                <ImageView
+                    android:id="@+id/iv_profile_detail_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing10"
+                    android:src="@drawable/ic_music_main_4_24"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_friend_profile_music"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="@id/gl_start"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_profile_detail_description" />
+
+                <TextView
+                    android:id="@+id/tv_friend_profile_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing10"
+                    android:textAppearance="@style/TextAppearance.Body"
+                    android:visibility="invisible"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintEnd_toEndOf="@id/gl_end"
+                    app:layout_constraintStart_toEndOf="@+id/iv_profile_detail_music"
+                    app:layout_constraintTop_toTopOf="@+id/iv_profile_detail_music"
+                    tools:text="멜론뮤직" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
