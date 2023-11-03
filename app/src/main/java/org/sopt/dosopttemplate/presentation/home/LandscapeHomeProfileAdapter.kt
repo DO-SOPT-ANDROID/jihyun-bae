@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ItemHomeProfileBinding
 import org.sopt.dosopttemplate.domain.model.Profile
@@ -29,7 +30,7 @@ class LandscapeHomeProfileAdapter(
             when (profile) {
                 is Profile.MyProfile -> {
                     binding.run {
-                        ivProfile.setImageResource(profile.profileImage)
+                        ivProfile.load(profile.profileImage)
                         tvProfileName.text = profile.name
                         tvProfileDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDescription.visibility =
@@ -53,7 +54,7 @@ class LandscapeHomeProfileAdapter(
 
                 is Profile.FriendProfile -> {
                     binding.run {
-                        ivProfile.setImageResource(profile.profileImage)
+                        ivProfile.load(profile.profileImage)
                         tvProfileName.text = profile.name
                         tvProfileDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDescription.visibility =
@@ -67,7 +68,7 @@ class LandscapeHomeProfileAdapter(
 
                 is Profile.FriendProfileWithMusic -> {
                     binding.run {
-                        ivProfile.setImageResource(profile.profileImage)
+                        ivProfile.load(profile.profileImage)
                         tvProfileName.text = profile.name
                         tvProfileDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDescription.visibility =
@@ -91,7 +92,7 @@ class LandscapeHomeProfileAdapter(
 
                 is Profile.FriendProfileWithBirth -> {
                     binding.run {
-                        ivProfile.setImageResource(profile.profileImage)
+                        ivProfile.load(profile.profileImage)
                         tvProfileName.text = profile.name
                         tvProfileDescription.text = context.getString(
                             R.string.home_birth,
