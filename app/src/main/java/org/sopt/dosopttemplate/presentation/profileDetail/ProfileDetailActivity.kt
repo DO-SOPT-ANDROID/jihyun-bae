@@ -2,6 +2,7 @@ package org.sopt.dosopttemplate.presentation.profileDetail
 
 import android.os.Bundle
 import android.view.View
+import coil.load
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityProfileDetailBinding
 import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.PROFILE
@@ -23,7 +24,7 @@ class ProfileDetailActivity :
             when (profile) {
                 is Profile.MyProfile -> {
                     with(binding) {
-                        ivProfileDetailProfile.setImageResource(profile.profileImage)
+                        ivProfileDetailProfile.load(profile.profileImage)
                         tvProfileDetailName.text = profile.name
                         tvProfileDetailDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDetailDescription.visibility =
@@ -33,7 +34,7 @@ class ProfileDetailActivity :
 
                 is Profile.FriendProfile -> {
                     with(binding) {
-                        ivProfileDetailProfile.setImageResource(profile.profileImage)
+                        ivProfileDetailProfile.load(profile.profileImage)
                         tvProfileDetailName.text = profile.name
                         tvProfileDetailDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDetailDescription.visibility =
@@ -43,7 +44,7 @@ class ProfileDetailActivity :
 
                 is Profile.FriendProfileWithMusic -> {
                     with(binding) {
-                        ivProfileDetailProfile.setImageResource(profile.profileImage)
+                        ivProfileDetailProfile.load(profile.profileImage)
                         tvProfileDetailName.text = profile.name
                         tvProfileDetailDescription.text = profile.description
                         if (profile.description.isNullOrEmpty()) tvProfileDetailDescription.visibility =
@@ -60,7 +61,7 @@ class ProfileDetailActivity :
 
                 is Profile.FriendProfileWithBirth -> {
                     with(binding) {
-                        ivProfileDetailProfile.setImageResource(profile.profileImage)
+                        ivProfileDetailProfile.load(profile.profileImage)
                         ivProfileDetailBirth.visibility = View.VISIBLE
                         tvProfileDetailName.text = profile.name
                         tvProfileDetailDescription.visibility = View.GONE
