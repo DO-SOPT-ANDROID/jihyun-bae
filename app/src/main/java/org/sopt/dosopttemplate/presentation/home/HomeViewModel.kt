@@ -29,4 +29,23 @@ class HomeViewModel @Inject constructor(
                 }
         }
     }
+
+    fun insertProfile(name: String) {
+        viewModelScope.launch {
+            profileRoomRepository.insertProfile(
+                Profile.FriendProfile(
+                    id = INITIAL_ID,
+                    name = name,
+                    profileImage = DEFAULT_PROFILE_IMAGE,
+                    description = null
+                )
+            )
+        }
+    }
+
+    companion object {
+        const val INITIAL_ID = 0
+        const val DEFAULT_PROFILE_IMAGE =
+            "https://github.com/DO-SOPT-ANDROID/jihyun-bae/assets/103172971/4d714e80-37c3-45a6-9a07-c6b672b59dbe"
+    }
 }

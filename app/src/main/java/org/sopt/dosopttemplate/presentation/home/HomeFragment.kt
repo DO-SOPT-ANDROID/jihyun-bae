@@ -29,6 +29,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         binding.viewModel = viewModel
 
         initLayout()
+        addListeners()
         initAdapter()
         collectData()
     }
@@ -68,6 +69,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         viewModel.getProfileList()
     }
 
+    private fun addListeners() {
+        binding.fabHomeAddFriend.setOnClickListener {
+            showAddFriendDialog()
+        }
+    }
+
     private fun initAdapter() {
         portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
         binding.rvHome.adapter = portraitHomeProfileAdapter
@@ -103,8 +110,18 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
         }
     }
 
+    private fun showAddFriendDialog() {
+        AddFriendDialog(
+            onDialogClosed = { viewModel.getProfileList() },
+            clickAddFriendBtn = { name ->
+                viewModel.getProfileList()
+                viewModel.insertProfile(name)
+            }).show(childFragmentManager, ADD_FRIEND_DIALOG)
+    }
+
     companion object {
         const val FIRST_POSITION = 0
         const val PROFILE = "profile"
+        const val ADD_FRIEND_DIALOG = "addFriendDialog"
     }
 }
