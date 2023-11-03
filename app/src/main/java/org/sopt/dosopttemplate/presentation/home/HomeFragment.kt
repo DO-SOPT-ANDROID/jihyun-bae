@@ -5,12 +5,17 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentHomeBinding
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.profileDetail.ProfileDetailActivity
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
+import org.sopt.dosopttemplate.util.UiState
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
 @AndroidEntryPoint
@@ -25,6 +30,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
         initLayout()
         initAdapter()
+        collectData()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -58,26 +64,39 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
                 vpHome.visibility = View.INVISIBLE
             }
         }
+
+        viewModel.getProfileList()
     }
 
     private fun initAdapter() {
         portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
-        portraitHomeProfileAdapter.submitList(viewModel.getMockProfileList())
         binding.rvHome.adapter = portraitHomeProfileAdapter
 
         landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail)
-        landscapeHomeProfileAdapter.submitList(viewModel.getMockProfileList())
         binding.vpHome.adapter = landscapeHomeProfileAdapter
+    }
+
+    private fun collectData() {
+        viewModel.profileListState.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    portraitHomeProfileAdapter.submitList(uiState.data)
+                    landscapeHomeProfileAdapter.submitList(uiState.data)
+                }
+
+                else -> {}
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun moveToProfileDetail(profile: Profile) {
         Intent(requireContext(), ProfileDetailActivity::class.java).apply {
             putExtra(
                 PROFILE, when (profile) {
-                    is Profile.MyProfile -> profile.toMyProfile()
-                    is Profile.FriendProfile -> profile.toFriendProfile()
-                    is Profile.FriendProfileWithMusic -> profile.toFriendProfileWithMusic()
-                    is Profile.FriendProfileWithBirth -> profile.toFriendProfileWithBirth()
+                    is Profile.MyProfile -> profile.toParcelizeMyProfile()
+                    is Profile.FriendProfile -> profile.toParcelizeFriendProfile()
+                    is Profile.FriendProfileWithMusic -> profile.toParcelizeFriendProfileWithMusic()
+                    is Profile.FriendProfileWithBirth -> profile.toParcelizeFriendProfileWithBirth()
                 }
             )
             startActivity(this)
