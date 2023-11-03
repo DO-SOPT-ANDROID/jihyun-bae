@@ -1,31 +1,32 @@
 package org.sopt.dosopttemplate.presentation.model
 
 import android.os.Parcelable
-import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 sealed class Profile : Parcelable {
+    abstract val id: Int
+
     @Parcelize
     data class MyProfile(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
-        val description: String?,
+        val description: String?
     ) : Profile(), Parcelable
 
     @Parcelize
     data class FriendProfile(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val description: String?
     ) : Profile(), Parcelable
 
     @Parcelize
     data class FriendProfileWithMusic(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val description: String?,
         val musicTitle: String,
@@ -34,8 +35,8 @@ sealed class Profile : Parcelable {
 
     @Parcelize
     data class FriendProfileWithBirth(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val birthMonth: Int,
         val birthDay: Int
