@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ItemHomeFriendProfileBinding
 import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
@@ -26,7 +27,7 @@ class PortraitHomeProfileAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(myProfile: Profile.MyProfile) {
             binding.run {
-                ivMyProfile.setImageResource(myProfile.profileImage)
+                ivMyProfile.load(myProfile.profileImage)
                 tvMyProfileName.text = myProfile.name
                 tvMyProfileDescription.text = myProfile.description
                 if (myProfile.description.isNullOrEmpty()) tvMyProfileDescription.visibility =
@@ -34,7 +35,11 @@ class PortraitHomeProfileAdapter(
 
                 with(includeMyProfileInfo) {
                     layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.DESCRIPTION.portraitBackgroundRes)
-                    ProfileInfoType.DESCRIPTION.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
+                    ProfileInfoType.DESCRIPTION.contextRes?.let {
+                        tvPortraitProfileInfoContext.setText(
+                            it
+                        )
+                    }
                     ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.DESCRIPTION.iconRes)
                 }
             }
@@ -47,7 +52,7 @@ class PortraitHomeProfileAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfile: Profile.FriendProfile) {
             with(binding) {
-                ivFriendProfile.setImageResource(friendProfile.profileImage)
+                ivFriendProfile.load(friendProfile.profileImage)
                 tvFriendProfileName.text = friendProfile.name
                 tvFriendProfileDescription.text = friendProfile.description
                 if (friendProfile.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
@@ -67,7 +72,7 @@ class PortraitHomeProfileAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfileWithMusic: Profile.FriendProfileWithMusic) {
             binding.run {
-                ivFriendProfile.setImageResource(friendProfileWithMusic.profileImage)
+                ivFriendProfile.load(friendProfileWithMusic.profileImage)
                 tvFriendProfileName.text = friendProfileWithMusic.name
                 tvFriendProfileDescription.text = friendProfileWithMusic.description
                 if (friendProfileWithMusic.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
@@ -97,7 +102,7 @@ class PortraitHomeProfileAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(friendProfileWithBirth: Profile.FriendProfileWithBirth) {
             binding.run {
-                ivFriendProfile.setImageResource(friendProfileWithBirth.profileImage)
+                ivFriendProfile.load(friendProfileWithBirth.profileImage)
                 tvFriendProfileName.text = friendProfileWithBirth.name
                 tvFriendProfileDescription.text = context.getString(
                     R.string.home_birth,
