@@ -1,15 +1,26 @@
 package org.sopt.dosopttemplate.domain.model
 
-import androidx.annotation.DrawableRes
+import org.sopt.dosopttemplate.data.model.local.ProfileEntity
 
 sealed class Profile {
+    abstract val id: Int
+
     data class MyProfile(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val description: String?,
     ) : Profile() {
-        fun toMyProfile() = org.sopt.dosopttemplate.presentation.model.Profile.MyProfile(
+        fun toProfileEntity() = ProfileEntity(
+            id = this.id,
+            profileType = ProfileEntity.ProfileType.MY_PROFILE,
+            profileImage = this.profileImage,
+            name = this.name,
+            description = this.description,
+        )
+
+        fun toParcelizeMyProfile() = org.sopt.dosopttemplate.presentation.model.Profile.MyProfile(
+            id = this.id,
             profileImage = this.profileImage,
             name = this.name,
             description = this.description
@@ -17,28 +28,49 @@ sealed class Profile {
     }
 
     data class FriendProfile(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val description: String?
     ) : Profile() {
-        fun toFriendProfile() = org.sopt.dosopttemplate.presentation.model.Profile.FriendProfile(
+        fun toProfileEntity() = ProfileEntity(
+            id = this.id,
+            profileType = ProfileEntity.ProfileType.FRIEND_PROFILE,
             profileImage = this.profileImage,
             name = this.name,
-            description = this.description
+            description = this.description,
         )
+
+        fun toParcelizeFriendProfile() =
+            org.sopt.dosopttemplate.presentation.model.Profile.FriendProfile(
+                id = this.id,
+                profileImage = this.profileImage,
+                name = this.name,
+                description = this.description
+            )
     }
 
     data class FriendProfileWithMusic(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val description: String?,
         val musicTitle: String,
         val singer: String
     ) : Profile() {
-        fun toFriendProfileWithMusic() =
+        fun toProfileEntity() = ProfileEntity(
+            id = this.id,
+            profileType = ProfileEntity.ProfileType.FRIEND_PROFILE_WITH_MUSIC,
+            profileImage = this.profileImage,
+            name = this.name,
+            description = this.description,
+            musicTitle = this.musicTitle,
+            singer = this.singer
+        )
+
+        fun toParcelizeFriendProfileWithMusic() =
             org.sopt.dosopttemplate.presentation.model.Profile.FriendProfileWithMusic(
+                id = this.id,
                 profileImage = this.profileImage,
                 name = this.name,
                 description = this.description,
@@ -48,14 +80,24 @@ sealed class Profile {
     }
 
     data class FriendProfileWithBirth(
-        @DrawableRes
-        val profileImage: Int,
+        override val id: Int,
+        val profileImage: String,
         val name: String,
         val birthMonth: Int,
         val birthDay: Int
     ) : Profile() {
-        fun toFriendProfileWithBirth() =
+        fun toProfileEntity() = ProfileEntity(
+            id = this.id,
+            profileType = ProfileEntity.ProfileType.FRIEND_PROFILE_WITH_BIRTH,
+            profileImage = this.profileImage,
+            name = this.name,
+            birthMonth = this.birthMonth,
+            birthDay = this.birthDay
+        )
+
+        fun toParcelizeFriendProfileWithBirth() =
             org.sopt.dosopttemplate.presentation.model.Profile.FriendProfileWithBirth(
+                id = this.id,
                 profileImage = this.profileImage,
                 name = this.name,
                 birthMonth = this.birthMonth,
