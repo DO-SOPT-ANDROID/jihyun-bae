@@ -48,4 +48,8 @@
     <string name="home_birth">오늘 %d월 %d일</string>
     <string name="home_music">%s-%s</string>
 
+    <!-- add friend -->
+    <string name="add_friend">친구 추가</string>
+    <string name="add_friend_name_hint">이름을 입력해주세요.</string>
+
 </resources>
