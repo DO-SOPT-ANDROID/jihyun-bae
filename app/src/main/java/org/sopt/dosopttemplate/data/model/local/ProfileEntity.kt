@@ -7,7 +7,7 @@ import org.sopt.dosopttemplate.domain.model.Profile
 
 @Entity(tableName = "profile_table")
 data class ProfileEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "profile_type")
     val profileType: ProfileType,
