@@ -43,6 +43,12 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun deleteProfile(profile: Profile) {
+        viewModelScope.launch {
+            profileRoomRepository.deleteProfile(profile)
+        }
+    }
+
     companion object {
         const val INITIAL_ID = 0
         const val DEFAULT_PROFILE_IMAGE =
