@@ -45,6 +45,7 @@ class HomeActivity : BindingActivity<ActivityHomeBinding>(R.layout.activity_home
                 R.id.menu_do_android -> navigateTo<DoAndroidFragment>()
                 R.id.menu_home -> navigateTo<HomeFragment>()
                 R.id.menu_my_page -> navigateTo<MyPageFragment>()
+                else -> return@setOnItemSelectedListener false
             }
             true
         }
