@@ -16,6 +16,7 @@ import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.profileDetail.ProfileDetailActivity
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.UiState
+import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
 @AndroidEntryPoint
@@ -76,10 +77,12 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initAdapter() {
-        portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail)
+        portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail,
+            { profile -> showDeleteProfileDialog(profile) })
         binding.rvHome.adapter = portraitHomeProfileAdapter
 
-        landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail)
+        landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail,
+            { profile -> showDeleteProfileDialog(profile) })
         binding.vpHome.adapter = landscapeHomeProfileAdapter
     }
 
@@ -119,9 +122,23 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             }).show(childFragmentManager, ADD_FRIEND_DIALOG)
     }
 
+    private fun showDeleteProfileDialog(profile: Profile) {
+        BindingDoSoptDialogFragment(
+            icon = R.drawable.ic_sad_24,
+            title = getString(R.string.delete_friend),
+            context = getString(R.string.delete_friend_context),
+            leftBtnText = getString(R.string.dialog_yes),
+            rightBtnText = getString(R.string.dialog_no),
+            clickLeftBtn = { viewModel.deleteProfile(profile) },
+            clickRightBtn = {},
+            onDialogClosed = { viewModel.getProfileList() }
+        ).show(childFragmentManager, DELETE_PROFILE_DIALOG)
+    }
+
     companion object {
         const val FIRST_POSITION = 0
         const val PROFILE = "profile"
         const val ADD_FRIEND_DIALOG = "addFriendDialog"
+        const val DELETE_PROFILE_DIALOG = "deleteProfileDialog"
     }
 }
