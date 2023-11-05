@@ -52,7 +52,8 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
             leftBtnText = getString(R.string.dialog_yes),
             rightBtnText = getString(R.string.dialog_no),
             clickLeftBtn = { viewModel.clearUserDataSource() },
-            clickRightBtn = {}
+            clickRightBtn = {},
+            onDialogClosed = {}
         ).show(childFragmentManager, LOGOUT_DIALOG)
     }
 

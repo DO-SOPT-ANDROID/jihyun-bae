@@ -1,5 +1,6 @@
 package org.sopt.dosopttemplate.util.binding
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.DrawableRes
@@ -14,7 +15,8 @@ class BindingDoSoptDialogFragment(
     private val leftBtnText: String,
     private val rightBtnText: String,
     private val clickLeftBtn: () -> Unit,
-    private val clickRightBtn: () -> Unit
+    private val clickRightBtn: () -> Unit,
+    private val onDialogClosed: () -> Unit
 ) : BindingDialogFragment<DialogDoSoptBinding>(R.layout.dialog_do_sopt) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,6 +24,11 @@ class BindingDoSoptDialogFragment(
 
         initLayout()
         addListeners()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDialogClosed.invoke()
     }
 
     private fun initLayout() {
