@@ -8,6 +8,7 @@ import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
 import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.FIRST_POSITION
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
+import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
 @AndroidEntryPoint
@@ -44,10 +45,18 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     }
 
     private fun showLogoutDialog() {
-        LogoutDialog({ viewModel.clearUserDataSource() }).show(childFragmentManager, DIALOG)
+        BindingDoSoptDialogFragment(
+            icon = R.drawable.ic_sad_24,
+            title = getString(R.string.logout),
+            context = getString(R.string.logout_dialog_context),
+            leftBtnText = getString(R.string.dialog_yes),
+            rightBtnText = getString(R.string.dialog_no),
+            clickLeftBtn = { viewModel.clearUserDataSource() },
+            clickRightBtn = {}
+        ).show(childFragmentManager, LOGOUT_DIALOG)
     }
 
     companion object {
-        const val DIALOG = "dialog"
+        const val LOGOUT_DIALOG = "logoutDialog"
     }
 }
