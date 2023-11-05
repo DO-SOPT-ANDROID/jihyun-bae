@@ -15,11 +15,12 @@ import org.sopt.dosopttemplate.presentation.type.ProfileInfoType
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
 class PortraitHomeProfileAdapter(
-    private val moveToProfileDetail: (Profile) -> Unit
+    private val moveToProfileDetail: (Profile) -> Unit,
+    private val showDeleteProfileDialog: (Profile) -> Unit
 ) : ListAdapter<Profile, RecyclerView.ViewHolder>(
     ItemDiffCallback<Profile>(
         onContentsTheSame = { old, new -> old == new },
-        onItemsTheSame = { old, new -> old == new }
+        onItemsTheSame = { old, new -> old.id == new.id }
     )
 ) {
     class MyProfileViewHolder(
@@ -48,78 +49,93 @@ class PortraitHomeProfileAdapter(
 
     class FriendProfileViewHolder(
         private val binding: ItemHomeFriendProfileBinding,
-        private val moveToProfileDetail: (Profile) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(friendProfile: Profile.FriendProfile) {
-            with(binding) {
-                ivFriendProfile.load(friendProfile.profileImage)
-                tvFriendProfileName.text = friendProfile.name
-                tvFriendProfileDescription.text = friendProfile.description
-                if (friendProfile.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
-                    View.GONE
-
-                root.setOnClickListener {
-                    moveToProfileDetail(friendProfile)
-                }
-            }
-        }
-    }
-
-    class FriendProfileWithMusicViewHolder(
-        private val binding: ItemHomeFriendProfileBinding,
         private val context: Context,
-        private val moveToProfileDetail: (Profile) -> Unit
+        private val moveToProfileDetail: (Profile) -> Unit,
+        private val showDeleteProfileDialog: (Profile) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(friendProfileWithMusic: Profile.FriendProfileWithMusic) {
-            binding.run {
-                ivFriendProfile.load(friendProfileWithMusic.profileImage)
-                tvFriendProfileName.text = friendProfileWithMusic.name
-                tvFriendProfileDescription.text = friendProfileWithMusic.description
-                if (friendProfileWithMusic.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
-                    View.GONE
+        fun onBind(profile: Profile) {
+            when (profile) {
+                is Profile.FriendProfile -> {
+                    binding.run {
+                        ivFriendProfile.load(profile.profileImage)
+                        tvFriendProfileName.text = profile.name
+                        tvFriendProfileDescription.text = profile.description
+                        if (profile.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
+                            View.GONE
 
-                with(includeFriendProfileInfo) {
-                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.portraitBackgroundRes)
-                    tvPortraitProfileInfoContext.text = context.getString(
-                        R.string.home_music,
-                        friendProfileWithMusic.musicTitle,
-                        friendProfileWithMusic.singer
-                    )
-                    ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
+                        root.setOnClickListener {
+                            moveToProfileDetail(profile)
+                        }
+
+                        root.setOnLongClickListener {
+                            showDeleteProfileDialog(profile)
+                            return@setOnLongClickListener true
+                        }
+                    }
                 }
 
-                root.setOnClickListener {
-                    moveToProfileDetail(friendProfileWithMusic)
-                }
-            }
-        }
-    }
+                is Profile.FriendProfileWithMusic -> {
+                    binding.run {
+                        ivFriendProfile.load(profile.profileImage)
+                        tvFriendProfileName.text = profile.name
+                        tvFriendProfileDescription.text = profile.description
+                        if (profile.description.isNullOrEmpty()) tvFriendProfileDescription.visibility =
+                            View.GONE
 
-    class FriendProfileWithBirthViewHolder(
-        private val binding: ItemHomeFriendProfileBinding,
-        private val context: Context,
-        private val moveToProfileDetail: (Profile) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(friendProfileWithBirth: Profile.FriendProfileWithBirth) {
-            binding.run {
-                ivFriendProfile.load(friendProfileWithBirth.profileImage)
-                tvFriendProfileName.text = friendProfileWithBirth.name
-                tvFriendProfileDescription.text = context.getString(
-                    R.string.home_birth,
-                    friendProfileWithBirth.birthMonth,
-                    friendProfileWithBirth.birthDay
-                )
-                ivFriendProfileBirth.visibility = View.VISIBLE
+                        with(includeFriendProfileInfo) {
+                            layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.landscapeBackgroundRes)
+                            tvPortraitProfileInfoContext.text = context.getString(
+                                R.string.home_music,
+                                profile.musicTitle,
+                                profile.singer
+                            )
+                            ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.MUSIC.iconRes)
+                        }
 
-                with(includeFriendProfileInfo) {
-                    layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.portraitBackgroundRes)
-                    ProfileInfoType.BIRTH.contextRes?.let { tvPortraitProfileInfoContext.setText(it) }
-                    ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
+                        root.setOnClickListener {
+                            moveToProfileDetail(profile)
+                        }
+
+                        root.setOnLongClickListener {
+                            showDeleteProfileDialog(profile)
+                            return@setOnLongClickListener true
+                        }
+                    }
                 }
 
-                root.setOnClickListener {
-                    moveToProfileDetail(friendProfileWithBirth)
+                is Profile.FriendProfileWithBirth -> {
+                    binding.run {
+                        ivFriendProfile.load(profile.profileImage)
+                        tvFriendProfileName.text = profile.name
+                        tvFriendProfileDescription.text = context.getString(
+                            R.string.home_birth,
+                            profile.birthMonth,
+                            profile.birthDay
+                        )
+                        ivFriendProfileBirth.visibility = View.VISIBLE
+
+                        with(includeFriendProfileInfo) {
+                            layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.BIRTH.landscapeBackgroundRes)
+                            ProfileInfoType.BIRTH.contextRes?.let {
+                                tvPortraitProfileInfoContext.setText(
+                                    it
+                                )
+                            }
+                            ivPortraitProfileInfoIcon.setImageResource(ProfileInfoType.BIRTH.iconRes)
+                        }
+
+                        root.setOnClickListener {
+                            moveToProfileDetail(profile)
+                        }
+
+                        root.setOnLongClickListener {
+                            showDeleteProfileDialog(profile)
+                            return@setOnLongClickListener true
+                        }
+                    }
                 }
+
+                else -> throw Exception("unknown type!!")
             }
         }
     }
@@ -142,31 +158,9 @@ class PortraitHomeProfileAdapter(
                     parent,
                     false,
                 ),
-                moveToProfileDetail
-            )
-        }
-
-        VIEW_TYPE_FRIEND_PROFILE_WITH_MUSIC -> {
-            FriendProfileWithMusicViewHolder(
-                ItemHomeFriendProfileBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
-                ),
                 parent.context,
-                moveToProfileDetail
-            )
-        }
-
-        VIEW_TYPE_FRIEND_PROFILE_WITH_BIRTH -> {
-            FriendProfileWithBirthViewHolder(
-                ItemHomeFriendProfileBinding.inflate(
-                    LayoutInflater.from(
-                        parent.context
-                    ), parent, false
-                ),
-                parent.context,
-                moveToProfileDetail
+                moveToProfileDetail,
+                showDeleteProfileDialog
             )
         }
 
@@ -176,23 +170,17 @@ class PortraitHomeProfileAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MyProfileViewHolder -> holder.onBind(currentList[position] as Profile.MyProfile)
-            is FriendProfileViewHolder -> holder.onBind(currentList[position] as Profile.FriendProfile)
-            is FriendProfileWithMusicViewHolder -> holder.onBind(currentList[position] as Profile.FriendProfileWithMusic)
-            is FriendProfileWithBirthViewHolder -> holder.onBind(currentList[position] as Profile.FriendProfileWithBirth)
+            is FriendProfileViewHolder -> holder.onBind(currentList[position])
         }
     }
 
     override fun getItemViewType(position: Int): Int = when (currentList[position]) {
         is Profile.MyProfile -> VIEW_TYPE_MY_PROFILE
-        is Profile.FriendProfile -> VIEW_TYPE_FRIEND_PROFILE
-        is Profile.FriendProfileWithMusic -> VIEW_TYPE_FRIEND_PROFILE_WITH_MUSIC
-        is Profile.FriendProfileWithBirth -> VIEW_TYPE_FRIEND_PROFILE_WITH_BIRTH
+        else -> VIEW_TYPE_FRIEND_PROFILE
     }
 
     companion object {
         const val VIEW_TYPE_MY_PROFILE = 0
         const val VIEW_TYPE_FRIEND_PROFILE = 1
-        const val VIEW_TYPE_FRIEND_PROFILE_WITH_MUSIC = 2
-        const val VIEW_TYPE_FRIEND_PROFILE_WITH_BIRTH = 3
     }
 }
