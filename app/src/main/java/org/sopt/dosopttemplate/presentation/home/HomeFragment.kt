@@ -18,6 +18,7 @@ import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.UiState
 import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
 import org.sopt.dosopttemplate.util.binding.BindingFragment
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home), ScrollableView {
@@ -77,13 +78,17 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun initAdapter() {
-        portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail,
-            { profile -> showDeleteProfileDialog(profile) })
-        binding.rvHome.adapter = portraitHomeProfileAdapter
+        runCatching {
+            portraitHomeProfileAdapter = PortraitHomeProfileAdapter(::moveToProfileDetail,
+                { profile -> showDeleteProfileDialog(profile) })
+            binding.rvHome.adapter = portraitHomeProfileAdapter
+        }.onFailure { throwable -> Timber.e(throwable.message) }
 
-        landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail,
-            { profile -> showDeleteProfileDialog(profile) })
-        binding.vpHome.adapter = landscapeHomeProfileAdapter
+        runCatching {
+            landscapeHomeProfileAdapter = LandscapeHomeProfileAdapter(::moveToProfileDetail,
+                { profile -> showDeleteProfileDialog(profile) })
+            binding.vpHome.adapter = landscapeHomeProfileAdapter
+        }.onFailure { throwable -> Timber.e(throwable.message) }
     }
 
     private fun collectData() {
