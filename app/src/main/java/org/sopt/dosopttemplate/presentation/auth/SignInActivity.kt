@@ -22,7 +22,7 @@ import org.sopt.dosopttemplate.util.extension.showToast
 
 @AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val viewModel by viewModels<AuthViewModel>()
+    private val authViewModel by viewModels<AuthViewModel>()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var backPressedTime = HomeActivity.INIT_BACK_PRESSED_TIME
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
@@ -39,7 +39,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.viewModel = viewModel
+        binding.viewModel = authViewModel
 
         setActivityResultLauncher()
         addListeners()
@@ -56,7 +56,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         resultLauncher =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { activityResult ->
                 if (activityResult.resultCode == RESULT_OK) {
-                    viewModel.user =
+                    authViewModel.user =
                         activityResult.data?.getCompatibleParcelableExtra<User>(USER_INFO)?.toUser()
                             ?: return@registerForActivityResult
                     binding.root.showSnackbar(getString(R.string.sign_up_success))
@@ -66,13 +66,13 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
 
     private fun addListeners() {
         binding.btnSignInSignIn.setOnClickListener {
-            if (viewModel.isSignInEnabled(
+            if (authViewModel.isSignInEnabled(
                     binding.etSignInId.text.toString(),
                     binding.etSignInPassword.text.toString()
                 )
             ) {
                 showToast(getString(R.string.sign_in_success))
-                viewModel.setAutoLogin()
+                authViewModel.setAutoLogin()
                 moveToMain()
             } else {
                 showToast(getString(R.string.sign_in_failed))
@@ -85,7 +85,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     }
 
     private fun setAutoLogin() {
-        if (viewModel.getAutoLogin()) {
+        if (authViewModel.getAutoLogin()) {
             showToast(getString(R.string.sign_in_auto_login_success))
             moveToMain()
         }

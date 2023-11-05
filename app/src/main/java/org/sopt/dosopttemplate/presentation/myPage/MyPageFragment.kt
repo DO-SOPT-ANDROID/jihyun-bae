@@ -16,12 +16,12 @@ import org.sopt.dosopttemplate.util.binding.BindingFragment
 @AndroidEntryPoint
 class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_my_page),
     ScrollableView {
-    private val viewModel by viewModels<MyPageViewModel>()
+    private val myPageViewModel by viewModels<MyPageViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
+        binding.viewModel = myPageViewModel
 
         initLayout()
         addListeners()
@@ -32,7 +32,7 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     }
 
     private fun initLayout() {
-        val userInfo = viewModel.getUserInfo()
+        val userInfo = myPageViewModel.getUserInfo()
         with(binding) {
             tvMyPageNickname.text = userInfo.nickname
             tvMyPageId.text = userInfo.id
@@ -60,7 +60,7 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
     }
 
     private fun clickLogoutDialogLeftBtn() {
-        viewModel.clearUserDataSource()
+        myPageViewModel.clearUserDataSource()
         Intent(requireContext(), SignInActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(this)
