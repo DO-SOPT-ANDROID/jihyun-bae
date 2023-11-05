@@ -1,11 +1,13 @@
 package org.sopt.dosopttemplate.presentation.myPage
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
+import org.sopt.dosopttemplate.presentation.auth.SignInActivity
 import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.FIRST_POSITION
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
@@ -51,10 +53,18 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
             context = getString(R.string.logout_dialog_context),
             leftBtnText = getString(R.string.dialog_yes),
             rightBtnText = getString(R.string.dialog_no),
-            clickLeftBtn = { viewModel.clearUserDataSource() },
+            clickLeftBtn = { clickLogoutDialogLeftBtn() },
             clickRightBtn = {},
             onDialogClosed = {}
         ).show(childFragmentManager, LOGOUT_DIALOG)
+    }
+
+    private fun clickLogoutDialogLeftBtn() {
+        viewModel.clearUserDataSource()
+        Intent(requireContext(), SignInActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(this)
+        }
     }
 
     companion object {
