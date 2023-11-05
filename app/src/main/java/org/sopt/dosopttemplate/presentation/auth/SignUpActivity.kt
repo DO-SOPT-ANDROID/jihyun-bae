@@ -15,11 +15,11 @@ import org.sopt.dosopttemplate.util.extension.showSnackbar
 
 @AndroidEntryPoint
 class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
-    private val viewModel by viewModels<AuthViewModel>()
+    private val authViewModel by viewModels<AuthViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.viewModel = viewModel
+        binding.viewModel = authViewModel
 
         addListeners()
     }
@@ -39,7 +39,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
                     etSignUpMbti.text.toString()
                 )
             }
-            if (viewModel.isSignUpEnabled(userInfo)) {
+            if (authViewModel.isSignUpEnabled(userInfo)) {
                 moveToSignIn(userInfo.toParcelizeUser())
             } else {
                 binding.root.showSnackbar(getString(R.string.sign_up_failed))
