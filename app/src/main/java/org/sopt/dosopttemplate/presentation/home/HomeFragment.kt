@@ -22,13 +22,13 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home), ScrollableView {
-    private val viewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
     private lateinit var portraitHomeProfileAdapter: PortraitHomeProfileAdapter
     private lateinit var landscapeHomeProfileAdapter: LandscapeHomeProfileAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.viewModel = viewModel
+        binding.viewModel = homeViewModel
 
         initLayout()
         addListeners()
@@ -68,7 +68,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             }
         }
 
-        viewModel.getProfileList()
+        homeViewModel.getProfileList()
     }
 
     private fun addListeners() {
@@ -92,7 +92,7 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     private fun collectData() {
-        viewModel.profileListState.flowWithLifecycle(lifecycle).onEach { uiState ->
+        homeViewModel.profileListState.flowWithLifecycle(lifecycle).onEach { uiState ->
             when (uiState) {
                 is UiState.Success -> {
                     portraitHomeProfileAdapter.submitList(uiState.data)
@@ -120,10 +120,10 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
 
     private fun showAddFriendDialog() {
         AddFriendDialog(
-            onDialogClosed = { viewModel.getProfileList() },
+            onDialogClosed = { homeViewModel.getProfileList() },
             clickAddFriendBtn = { name ->
-                viewModel.getProfileList()
-                viewModel.insertProfile(name)
+                homeViewModel.getProfileList()
+                homeViewModel.insertProfile(name)
             }).show(childFragmentManager, ADD_FRIEND_DIALOG)
     }
 
@@ -134,9 +134,9 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
             context = getString(R.string.delete_friend_context),
             leftBtnText = getString(R.string.dialog_yes),
             rightBtnText = getString(R.string.dialog_no),
-            clickLeftBtn = { viewModel.deleteProfile(profile) },
+            clickLeftBtn = { homeViewModel.deleteProfile(profile) },
             clickRightBtn = {},
-            onDialogClosed = { viewModel.getProfileList() }
+            onDialogClosed = { homeViewModel.getProfileList() }
         ).show(childFragmentManager, DELETE_PROFILE_DIALOG)
     }
 
