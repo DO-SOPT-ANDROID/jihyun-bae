@@ -133,13 +133,17 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_sign_in_sign_in"
+            style="@style/Widget.Material.Button.Basic"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/spacing30"
             android:layout_marginBottom="@dimen/spacing30"
-            android:paddingVertical="10dp"
+            android:height="44dp"
             android:text="@string/sign_in"
             android:textAppearance="@style/TextAppearance.Headline"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/main_2"
+            app:cornerRadius="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
