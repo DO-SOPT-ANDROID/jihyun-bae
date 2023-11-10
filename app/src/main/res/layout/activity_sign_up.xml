@@ -63,17 +63,26 @@
                     app:layout_constraintStart_toStartOf="@id/tv_sign_up_title"
                     app:layout_constraintTop_toBottomOf="@id/tv_sign_up_title" />
 
-                <EditText
-                    android:id="@+id/et_sign_up_id"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_sign_up_id"
+                    style="@style/CustomTextInputLayout.Main3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing4"
-                    android:hint="@string/sign_id_hint"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.Body"
+                    android:theme="@style/CustomTextInputLayout.Main3"
                     app:layout_constraintEnd_toEndOf="@id/tv_sign_up_title"
                     app:layout_constraintStart_toStartOf="@id/tv_sign_up_id"
-                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_sign_up_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:hint="@string/sign_id_hint"
+                        android:inputType="text"
+                        android:textAppearance="@style/TextAppearance.Body" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_sign_up_password"
@@ -82,20 +91,30 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_password"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_id"
-                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_id" />
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_id"
+                    app:layout_constraintTop_toBottomOf="@id/layout_sign_up_id" />
 
-                <EditText
-                    android:id="@+id/et_sign_up_password"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_sign_up_password"
+                    style="@style/CustomTextInputLayout.Main3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:hint="@string/sign_password_hint"
-                    android:inputType="textPassword"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_id"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_id"
-                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password" />
+                    android:theme="@style/CustomTextInputLayout.Main3"
+                    app:layout_constraintEnd_toEndOf="@id/layout_sign_up_id"
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_id"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_sign_up_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:hint="@string/sign_password_hint"
+                        android:inputType="textPassword"
+                        android:textAppearance="@style/TextAppearance.Body" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <TextView
                     android:id="@+id/tv_sign_up_nickname"
@@ -104,20 +123,29 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_up_nickname"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_password"
-                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_password" />
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_password"
+                    app:layout_constraintTop_toBottomOf="@id/layout_sign_up_password" />
 
-                <EditText
-                    android:id="@+id/et_sign_up_nickname"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_sign_up_nickname"
+                    style="@style/CustomTextInputLayout.Main3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:hint="@string/sign_up_nickname_hint"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_password"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_password"
-                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_nickname" />
+                    android:theme="@style/CustomTextInputLayout.Main3"
+                    app:layout_constraintEnd_toEndOf="@id/layout_sign_up_password"
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_password"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_nickname">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_sign_up_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:hint="@string/sign_up_nickname_hint"
+                        android:inputType="text"
+                        android:textAppearance="@style/TextAppearance.Body" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
                     android:id="@+id/tv_sign_up_mbti"
@@ -126,22 +154,31 @@
                     android:layout_marginTop="@dimen/spacing24"
                     android:text="@string/sign_up_mbti"
                     android:textAppearance="@style/TextAppearance.Title"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_nickname"
-                    app:layout_constraintTop_toBottomOf="@id/et_sign_up_nickname" />
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_nickname"
+                    app:layout_constraintTop_toBottomOf="@id/layout_sign_up_nickname" />
 
-                <EditText
-                    android:id="@+id/et_sign_up_mbti"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_sign_up_mbti"
+                    style="@style/CustomTextInputLayout.Main3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginBottom="@dimen/spacing30"
-                    android:hint="@string/sign_up_mbti_hint"
-                    android:inputType="text"
-                    android:textAppearance="@style/TextAppearance.Body"
+                    android:theme="@style/CustomTextInputLayout.Main3"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@id/et_sign_up_nickname"
-                    app:layout_constraintStart_toStartOf="@id/et_sign_up_nickname"
-                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_mbti" />
+                    app:layout_constraintEnd_toEndOf="@id/layout_sign_up_nickname"
+                    app:layout_constraintStart_toStartOf="@id/layout_sign_up_nickname"
+                    app:layout_constraintTop_toBottomOf="@id/tv_sign_up_mbti">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_sign_up_mbti"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="@dimen/spacing30"
+                        android:hint="@string/sign_up_mbti_hint"
+                        android:inputType="text"
+                        android:textAppearance="@style/TextAppearance.Body" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
