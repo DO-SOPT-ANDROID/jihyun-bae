@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="org.sopt.dosopttemplate.presentation.auth.AuthViewModel" />
+            type="org.sopt.dosopttemplate.presentation.signUp.SignUpViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,7 +25,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/spacing30">
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/gl_start"
@@ -80,6 +81,7 @@
                         android:layout_marginTop="8dp"
                         android:hint="@string/sign_id_hint"
                         android:inputType="text"
+                        android:text="@={viewModel.id}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -111,6 +113,7 @@
                         android:layout_marginTop="4dp"
                         android:hint="@string/sign_password_hint"
                         android:inputType="textPassword"
+                        android:text="@={viewModel.password}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -143,6 +146,7 @@
                         android:layout_marginTop="4dp"
                         android:hint="@string/sign_up_nickname_hint"
                         android:inputType="text"
+                        android:text="@={viewModel.nickname}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -163,7 +167,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:theme="@style/CustomTextInputLayout.Main3"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@id/layout_sign_up_nickname"
                     app:layout_constraintStart_toStartOf="@id/layout_sign_up_nickname"
                     app:layout_constraintTop_toBottomOf="@id/tv_sign_up_mbti">
@@ -173,9 +176,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:layout_marginBottom="@dimen/spacing30"
                         android:hint="@string/sign_up_mbti_hint"
                         android:inputType="text"
+                        android:text="@={viewModel.mbti}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>
