@@ -22,7 +22,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASE_URL", properties["BASE_URL"]
+        buildConfigField "String", "BASE_URL", properties["base.url"]
+        buildConfigField "String", "REQRES_IN_BASE_URL", properties["reqres.in.base.url"]
     }
 
     buildTypes {
