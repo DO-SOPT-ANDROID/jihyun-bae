@@ -12,11 +12,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.home.HomeFragment">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_home"
+            android:id="@+id/rv_friend"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -24,33 +23,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_home_friend_profile" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_home"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_home_add_friend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing16"
-            android:layout_marginBottom="@dimen/spacing16"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_add_gray_400_24"
-            app:backgroundTint="@color/gray_400"
-            app:borderWidth="2dp"
-            app:elevation="0dp"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:rippleColor="@android:color/transparent"
-            app:tint="@null" />
-
+            tools:listitem="@layout/item_home_user" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
