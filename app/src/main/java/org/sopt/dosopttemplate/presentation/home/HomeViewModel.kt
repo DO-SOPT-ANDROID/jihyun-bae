@@ -6,52 +6,35 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import org.sopt.dosopttemplate.domain.model.Profile
-import org.sopt.dosopttemplate.domain.repository.ProfileRoomRepository
+import org.sopt.dosopttemplate.domain.model.ReqresUser
+import org.sopt.dosopttemplate.domain.repository.ReqresRepository
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val profileRoomRepository: ProfileRoomRepository
+    private val reqresRepository: ReqresRepository
 ) : ViewModel() {
-    private val _profileListState = MutableStateFlow<UiState<List<Profile>>>(UiState.Loading)
-    val profileListState = _profileListState.asStateFlow()
+    private val _listUserState = MutableStateFlow<UiState<List<ReqresUser>>>(UiState.Empty)
+    val listUserState = _listUserState.asStateFlow()
 
-    fun getProfileList() {
-        viewModelScope.launch {
-            profileRoomRepository.getProfileList()
-                .onSuccess { profileList ->
-                    _profileListState.value = UiState.Success(profileList)
-                }
-                .onFailure { throwable ->
-                    _profileListState.value = UiState.Error(throwable.message)
-                }
-        }
+    init {
+        getListUsers(PAGE)
     }
 
-    fun insertProfile(name: String) {
+    fun getListUsers(page: Int) {
         viewModelScope.launch {
-            profileRoomRepository.insertProfile(
-                Profile.FriendProfile(
-                    id = INITIAL_ID,
-                    name = name,
-                    profileImage = DEFAULT_PROFILE_IMAGE,
-                    description = null
-                )
-            )
-        }
-    }
-
-    fun deleteProfile(profile: Profile) {
-        viewModelScope.launch {
-            profileRoomRepository.deleteProfile(profile)
+            reqresRepository.getListUsers(page)
+                .onSuccess { listUser ->
+                    _listUserState.value = UiState.Success(listUser)
+                }
+                .onFailure { exception: Throwable ->
+                    _listUserState.value = UiState.Error(exception.message)
+                }
         }
     }
 
     companion object {
-        const val INITIAL_ID = 0
-        const val DEFAULT_PROFILE_IMAGE =
-            "https://github.com/DO-SOPT-ANDROID/jihyun-bae/assets/103172971/4d714e80-37c3-45a6-9a07-c6b672b59dbe"
+        const val PAGE = 2
     }
 }
