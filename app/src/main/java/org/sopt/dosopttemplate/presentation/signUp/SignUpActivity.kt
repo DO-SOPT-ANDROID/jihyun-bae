@@ -104,8 +104,4 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             finish()
         }
     }
-
-    companion object {
-        const val USER_INFO = "USER_INFO"
-    }
 }
