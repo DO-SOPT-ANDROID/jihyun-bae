@@ -29,9 +29,19 @@ class NetworkModule {
 
     @ExperimentalSerializationApi
     @Provides
+    @Sopt
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit = Retrofit.Builder()
         .baseUrl(BuildConfig.BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull())))
+        .build()
+
+    @ExperimentalSerializationApi
+    @Provides
+    @Singleton
+    fun provideReqresRetrofit(okHttpClient: OkHttpClient, json: Json): Retrofit = Retrofit.Builder()
+        .baseUrl(BuildConfig.REQRES_IN_BASE_URL)
         .client(okHttpClient)
         .addConverterFactory(json.asConverterFactory(requireNotNull("application/json".toMediaTypeOrNull())))
         .build()
