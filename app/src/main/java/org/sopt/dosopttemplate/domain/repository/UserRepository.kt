@@ -1,10 +1,8 @@
 package org.sopt.dosopttemplate.domain.repository
 
-import org.sopt.dosopttemplate.domain.model.User
-
 interface UserRepository {
-    fun setUser(user: User)
-    fun getUserInfo(): User
+    fun setUserId(id: Int)
+    fun getUserId(): Int
     fun setAutoLogin(isAutoLogin: Boolean)
     fun getAutoLogin(): Boolean
     fun clearUserDataSource()
