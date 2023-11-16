@@ -1,15 +1,15 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.friend
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import org.sopt.dosopttemplate.databinding.ItemHomeFriendProfileBinding
-import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
+import org.sopt.dosopttemplate.databinding.ItemFriendFriendProfileBinding
+import org.sopt.dosopttemplate.databinding.ItemFriendMyProfileBinding
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class PortraitHomeProfileAdapter(
+class PortraitFriendProfileAdapter(
     private val moveToProfileDetail: (Profile) -> Unit,
     private val showDeleteProfileDialog: (Profile) -> Unit
 ) : ListAdapter<Profile, RecyclerView.ViewHolder>(
@@ -21,7 +21,7 @@ class PortraitHomeProfileAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
         VIEW_TYPE_MY_PROFILE -> {
             MyProfileViewHolder(
-                ItemHomeMyProfileBinding.inflate(
+                ItemFriendMyProfileBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
@@ -31,7 +31,7 @@ class PortraitHomeProfileAdapter(
 
         VIEW_TYPE_FRIEND_PROFILE -> {
             FriendProfileViewHolder(
-                ItemHomeFriendProfileBinding.inflate(
+                ItemFriendFriendProfileBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false,

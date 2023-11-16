@@ -1,16 +1,16 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.friend
 
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import org.sopt.dosopttemplate.R
-import org.sopt.dosopttemplate.databinding.ItemHomeFriendProfileBinding
+import org.sopt.dosopttemplate.databinding.ItemFriendFriendProfileBinding
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.type.ProfileInfoType
 
 class FriendProfileViewHolder(
-    private val binding: ItemHomeFriendProfileBinding,
+    private val binding: ItemFriendFriendProfileBinding,
     private val context: Context,
     private val moveToProfileDetail: (Profile) -> Unit,
     private val showDeleteProfileDialog: (Profile) -> Unit

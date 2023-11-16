@@ -5,7 +5,7 @@ import android.view.View
 import coil.load
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivityProfileDetailBinding
-import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.PROFILE
+import org.sopt.dosopttemplate.presentation.friend.FriendFragment.Companion.PROFILE
 import org.sopt.dosopttemplate.presentation.model.Profile
 import org.sopt.dosopttemplate.util.binding.BindingActivity
 import org.sopt.dosopttemplate.util.extension.getCompatibleParcelableExtra

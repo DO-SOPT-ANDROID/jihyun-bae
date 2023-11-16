@@ -1,13 +1,13 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.friend
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import org.sopt.dosopttemplate.databinding.ItemHomeProfileBinding
+import org.sopt.dosopttemplate.databinding.ItemFriendProfileBinding
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.util.ItemDiffCallback
 
-class LandscapeHomeProfileAdapter(
+class LandscapeFriendProfileAdapter(
     private val moveToProfileDetail: (Profile) -> Unit,
     private val showDeleteProfileDialog: (Profile) -> Unit
 ) : ListAdapter<Profile, ProfileViewHolder>(
@@ -21,7 +21,7 @@ class LandscapeHomeProfileAdapter(
         viewType: Int
     ): ProfileViewHolder {
         val binding =
-            ItemHomeProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemFriendProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ProfileViewHolder(
             binding,
             parent.context,

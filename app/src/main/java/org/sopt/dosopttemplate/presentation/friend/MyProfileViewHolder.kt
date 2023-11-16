@@ -1,14 +1,14 @@
-package org.sopt.dosopttemplate.presentation.home
+package org.sopt.dosopttemplate.presentation.friend
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import org.sopt.dosopttemplate.databinding.ItemHomeMyProfileBinding
+import org.sopt.dosopttemplate.databinding.ItemFriendMyProfileBinding
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.presentation.type.ProfileInfoType
 
 class MyProfileViewHolder(
-    private val binding: ItemHomeMyProfileBinding
+    private val binding: ItemFriendMyProfileBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun onBind(myProfile: Profile.MyProfile) {
         binding.run {
