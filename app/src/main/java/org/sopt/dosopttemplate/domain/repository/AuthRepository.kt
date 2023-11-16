@@ -1,6 +1,7 @@
 package org.sopt.dosopttemplate.domain.repository
 
 import org.sopt.dosopttemplate.domain.model.UserData
+import org.sopt.dosopttemplate.domain.model.UserInfo
 
 interface AuthRepository {
     suspend fun signUp(
@@ -13,4 +14,8 @@ interface AuthRepository {
         username: String,
         password: String
     ): Result<UserData>
+
+    suspend fun getUserInfo(
+        userId: Int
+    ): Result<UserInfo>
 }

@@ -4,6 +4,7 @@ import org.sopt.dosopttemplate.data.datasource.remote.AuthDataSource
 import org.sopt.dosopttemplate.data.model.remote.request.RequestSignInDto
 import org.sopt.dosopttemplate.data.model.remote.request.RequestSignUpDto
 import org.sopt.dosopttemplate.domain.model.UserData
+import org.sopt.dosopttemplate.domain.model.UserInfo
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
 import javax.inject.Inject
 
@@ -33,4 +34,8 @@ class AuthRepositoryImpl @Inject constructor(
                 )
             ).toUserData()
         }
+
+    override suspend fun getUserInfo(memberId: Int): Result<UserInfo> = runCatching {
+        authDataSource.getUserInfo(memberId).toUserInfo()
+    }
 }
