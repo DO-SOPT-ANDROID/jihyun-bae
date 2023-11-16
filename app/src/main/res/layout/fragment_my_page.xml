@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing14"
                     android:textAppearance="@style/TextAppearance.Headline"
-                    app:layout_constraintBottom_toTopOf="@id/tv_my_page_mbti"
+                    app:layout_constraintBottom_toTopOf="@id/tv_my_page_id"
                     app:layout_constraintStart_toEndOf="@id/iv_my_page_profile"
                     app:layout_constraintTop_toTopOf="@id/iv_my_page_profile"
                     tools:text="닉네임" />
@@ -83,23 +83,11 @@
                     android:id="@+id/tv_my_page_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing4"
-                    android:textAppearance="@style/TextAppearance.Body"
-                    android:textColor="@color/gray_400"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_my_page_nickname"
-                    app:layout_constraintStart_toEndOf="@id/tv_my_page_nickname"
-                    app:layout_constraintTop_toTopOf="@id/tv_my_page_nickname"
-                    tools:text="id" />
-
-                <TextView
-                    android:id="@+id/tv_my_page_mbti"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing4"
                     android:textAppearance="@style/TextAppearance.Body"
                     app:layout_constraintBottom_toBottomOf="@id/iv_my_page_profile"
                     app:layout_constraintStart_toStartOf="@id/tv_my_page_nickname"
-                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_id"
+                    app:layout_constraintTop_toBottomOf="@id/tv_my_page_nickname"
                     tools:text="MBTI" />
 
                 <View
