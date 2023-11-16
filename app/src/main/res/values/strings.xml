@@ -41,10 +41,13 @@
     <string name="my_page">MY PAGE</string>
 
     <!-- home -->
-    <string name="home_profile_info_type_description">상태메시지</string>
-    <string name="home_profile_info_type_birth">선물하기</string>
-    <string name="home_birth">오늘 %d월 %d일</string>
-    <string name="home_music">%s-%s</string>
+    <string name="home_name">%s %s</string>
+
+    <!-- friend -->
+    <string name="friend_profile_info_type_description">상태메시지</string>
+    <string name="friend_profile_info_type_birth">선물하기</string>
+    <string name="friend_birth">오늘 %d월 %d일</string>
+    <string name="friend_music">%s-%s</string>
 
     <!-- dialog -->
     <string name="dialog_yes">네</string>
