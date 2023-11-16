@@ -4,12 +4,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
 import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.FIRST_POSITION
 import org.sopt.dosopttemplate.presentation.signIn.SignInActivity
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
+import org.sopt.dosopttemplate.util.UiState
 import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
 import org.sopt.dosopttemplate.util.binding.BindingFragment
 
@@ -23,27 +28,33 @@ class MyPageFragment : BindingFragment<FragmentMyPageBinding>(R.layout.fragment_
 
         binding.viewModel = myPageViewModel
 
-        initLayout()
         addListeners()
+        collectData()
     }
 
     override fun scrollToTop() {
         binding.svMyPage.smoothScrollTo(FIRST_POSITION, FIRST_POSITION)
     }
 
-    private fun initLayout() {
-        val userInfo = myPageViewModel.getUserInfo()
-        with(binding) {
-            tvMyPageNickname.text = userInfo.nickname
-            tvMyPageId.text = userInfo.id
-            tvMyPageMbti.text = userInfo.mbti
-        }
-    }
-
     private fun addListeners() {
         binding.tvMyPageLogout.setOnClickListener {
             showLogoutDialog()
         }
+    }
+
+    private fun collectData() {
+        myPageViewModel.getUserInfoState.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    with(binding) {
+                        tvMyPageNickname.text = uiState.data.nickname
+                        tvMyPageId.text = uiState.data.username
+                    }
+                }
+
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
     }
 
     private fun showLogoutDialog() {
