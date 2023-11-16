@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="org.sopt.dosopttemplate.presentation.auth.AuthViewModel" />
+            type="org.sopt.dosopttemplate.presentation.signIn.SignInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,6 +80,7 @@
                         android:layout_marginTop="@dimen/spacing4"
                         android:hint="@string/sign_id_hint"
                         android:inputType="text"
+                        android:text="@={viewModel.id}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -112,6 +113,7 @@
                         android:layout_marginBottom="@dimen/spacing30"
                         android:hint="@string/sign_password_hint"
                         android:inputType="textPassword"
+                        android:text="@={viewModel.password}"
                         android:textAppearance="@style/TextAppearance.Body" />
 
                 </com.google.android.material.textfield.TextInputLayout>

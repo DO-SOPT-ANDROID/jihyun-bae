@@ -8,23 +8,24 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.ActivitySignInBinding
 import org.sopt.dosopttemplate.presentation.HomeActivity
-import org.sopt.dosopttemplate.presentation.auth.AuthViewModel
-import org.sopt.dosopttemplate.presentation.model.User
 import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity
-import org.sopt.dosopttemplate.presentation.signUp.SignUpActivity.Companion.USER_INFO
+import org.sopt.dosopttemplate.util.UiState
 import org.sopt.dosopttemplate.util.binding.BindingActivity
-import org.sopt.dosopttemplate.util.extension.getCompatibleParcelableExtra
 import org.sopt.dosopttemplate.util.extension.hideKeyboard
 import org.sopt.dosopttemplate.util.extension.showSnackbar
 import org.sopt.dosopttemplate.util.extension.showToast
 
 @AndroidEntryPoint
 class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_sign_in) {
-    private val authViewModel by viewModels<AuthViewModel>()
+    private val signInViewModel by viewModels<SignInViewModel>()
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var backPressedTime = HomeActivity.INIT_BACK_PRESSED_TIME
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
@@ -41,10 +42,11 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.viewModel = authViewModel
+        binding.viewModel = signInViewModel
 
         setActivityResultLauncher()
         addListeners()
+        collectData()
         setAutoLogin()
         finishOnDoubleBackPress()
     }
@@ -65,17 +67,7 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
 
     private fun addListeners() {
         binding.btnSignInSignIn.setOnClickListener {
-            if (authViewModel.isSignInEnabled(
-                    binding.etSignInId.text.toString(),
-                    binding.etSignInPassword.text.toString()
-                )
-            ) {
-                showToast(getString(R.string.sign_in_success))
-                authViewModel.setAutoLogin()
-                moveToMain()
-            } else {
-                showToast(getString(R.string.sign_in_failed))
-            }
+            signInViewModel.signIn()
         }
 
         binding.tvSignInSignUp.setOnClickListener {
@@ -83,8 +75,23 @@ class SignInActivity : BindingActivity<ActivitySignInBinding>(R.layout.activity_
         }
     }
 
+    private fun collectData() {
+        signInViewModel.signInState.flowWithLifecycle(lifecycle).onEach { uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    showToast(getString(R.string.sign_in_success, uiState.data.id))
+                    signInViewModel.setAutoLogin(id = uiState.data.id)
+                    moveToMain()
+                }
+
+                is UiState.Error -> showToast(getString(R.string.sign_in_failed))
+                else -> Unit
+            }
+        }.launchIn(lifecycleScope)
+    }
+
     private fun setAutoLogin() {
-        if (authViewModel.getAutoLogin()) {
+        if (signInViewModel.getAutoLogin()) {
             showToast(getString(R.string.sign_in_auto_login_success))
             moveToMain()
         }
