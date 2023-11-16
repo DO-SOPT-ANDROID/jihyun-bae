@@ -52,7 +52,7 @@ class ProfileDetailActivity :
                         ivProfileDetailMusic.visibility = View.VISIBLE
                         tvFriendProfileMusic.visibility = View.VISIBLE
                         tvFriendProfileMusic.text = getString(
-                            R.string.home_music,
+                            R.string.friend_music,
                             profile.musicTitle,
                             profile.singer
                         )
