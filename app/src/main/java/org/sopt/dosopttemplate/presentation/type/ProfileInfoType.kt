@@ -13,7 +13,7 @@ enum class ProfileInfoType(
     DESCRIPTION(
         portraitBackgroundRes = R.drawable.shape_gray_300_line_12_rect,
         landscapeBackgroundRes = R.drawable.shape_gray_300_line_50_rect,
-        contextRes = R.string.home_profile_info_type_description,
+        contextRes = R.string.friend_profile_info_type_description,
         iconRes = R.drawable.ic_add_gray_400_24
     ),
     MUSIC(
@@ -25,7 +25,7 @@ enum class ProfileInfoType(
     BIRTH(
         portraitBackgroundRes = R.drawable.shape_point_3_line_12_rect,
         landscapeBackgroundRes = R.drawable.shape_point_3_line_50_rect,
-        contextRes = R.string.home_profile_info_type_birth,
+        contextRes = R.string.friend_profile_info_type_birth,
         iconRes = R.drawable.ic_gift_point_3_24
     )
 }

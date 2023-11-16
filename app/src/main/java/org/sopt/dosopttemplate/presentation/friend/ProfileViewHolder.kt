@@ -77,7 +77,7 @@ class ProfileViewHolder(
                         root.visibility = View.VISIBLE
                         layoutLandscapeProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.landscapeBackgroundRes)
                         tvLandscapeProfileInfoContext.text = context.getString(
-                            R.string.home_music,
+                            R.string.friend_music,
                             profile.musicTitle,
                             profile.singer
                         )
@@ -100,7 +100,7 @@ class ProfileViewHolder(
                     ivProfile.load(profile.profileImage)
                     tvProfileName.text = profile.name
                     tvProfileDescription.text = context.getString(
-                        R.string.home_birth,
+                        R.string.friend_birth,
                         profile.birthMonth,
                         profile.birthDay
                     )

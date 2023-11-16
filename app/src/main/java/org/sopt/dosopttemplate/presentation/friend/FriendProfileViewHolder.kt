@@ -47,7 +47,7 @@ class FriendProfileViewHolder(
                     with(includeFriendProfileInfo) {
                         layoutPortraitProfileInfo.setBackgroundResource(ProfileInfoType.MUSIC.landscapeBackgroundRes)
                         tvPortraitProfileInfoContext.text = context.getString(
-                            R.string.home_music,
+                            R.string.friend_music,
                             profile.musicTitle,
                             profile.singer
                         )
@@ -70,7 +70,7 @@ class FriendProfileViewHolder(
                     ivFriendProfile.load(profile.profileImage)
                     tvFriendProfileName.text = profile.name
                     tvFriendProfileDescription.text = context.getString(
-                        R.string.home_birth,
+                        R.string.friend_birth,
                         profile.birthMonth,
                         profile.birthDay
                     )
