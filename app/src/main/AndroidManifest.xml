@@ -21,11 +21,11 @@
             android:name=".presentation.profileDetail.ProfileDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.auth.SignUpActivity"
+            android:name=".presentation.signUp.SignUpActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".presentation.auth.SignInActivity"
+            android:name=".presentation.signIn.SignInActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

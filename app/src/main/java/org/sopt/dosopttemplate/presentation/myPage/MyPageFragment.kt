@@ -7,8 +7,8 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
-import org.sopt.dosopttemplate.presentation.auth.SignInActivity
 import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.FIRST_POSITION
+import org.sopt.dosopttemplate.presentation.signIn.SignInActivity
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.binding.BindingDoSoptDialogFragment
 import org.sopt.dosopttemplate.util.binding.BindingFragment
