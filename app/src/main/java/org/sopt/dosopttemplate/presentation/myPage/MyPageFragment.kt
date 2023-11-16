@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.sopt.dosopttemplate.R
 import org.sopt.dosopttemplate.databinding.FragmentMyPageBinding
-import org.sopt.dosopttemplate.presentation.home.HomeFragment.Companion.FIRST_POSITION
+import org.sopt.dosopttemplate.presentation.friend.FriendFragment.Companion.FIRST_POSITION
 import org.sopt.dosopttemplate.presentation.signIn.SignInActivity
 import org.sopt.dosopttemplate.presentation.type.ScrollableView
 import org.sopt.dosopttemplate.util.UiState
