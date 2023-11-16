@@ -100,6 +100,7 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
 
     private fun moveToSignIn() {
         Intent(this@SignUpActivity, SignInActivity::class.java).apply {
+            setResult(RESULT_OK, this)
             finish()
         }
     }
