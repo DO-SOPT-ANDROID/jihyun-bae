@@ -100,7 +100,7 @@ class FriendFragment : BindingFragment<FragmentFriendBinding>(R.layout.fragment_
                     landscapeFriendProfileAdapter.submitList(uiState.data)
                 }
 
-                else -> {}
+                else -> Unit
             }
         }.launchIn(lifecycleScope)
     }
