@@ -52,6 +52,15 @@ class FriendFragment : BindingFragment<FragmentFriendBinding>(R.layout.fragment_
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        with(binding) {
+            rvFriend.adapter = null
+            vpFriend.adapter = null
+        }
+    }
+
     override fun scrollToTop() {
         binding.rvFriend.smoothScrollToPosition(FIRST_POSITION)
     }
