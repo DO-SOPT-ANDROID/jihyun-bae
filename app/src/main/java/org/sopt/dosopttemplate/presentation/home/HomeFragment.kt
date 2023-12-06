@@ -30,9 +30,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(R.layout.fragment_home
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
-
         binding.rvFriend.adapter = null
+        super.onDestroyView()
     }
 
     override fun scrollToTop() {
