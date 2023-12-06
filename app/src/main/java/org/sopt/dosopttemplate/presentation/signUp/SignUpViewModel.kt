@@ -42,17 +42,17 @@ class SignUpViewModel @Inject constructor(
     fun singUp() {
         viewModelScope.launch {
             _signUpState.emit(UiState.Loading)
-            authRepository.signUp(
-                username = id.value,
-                nickname = nickname.value,
-                password = password.value
-            )
-                .onSuccess {
+            runCatching {
+                authRepository.signUp(
+                    username = id.value,
+                    nickname = nickname.value,
+                    password = password.value
+                ).collect() {
                     _signUpState.emit(UiState.Success(Unit))
                 }
-                .onFailure { exception: Throwable ->
-                    _signUpState.emit(UiState.Error(exception.message))
-                }
+            }.onFailure { exception: Throwable ->
+                _signUpState.emit(UiState.Error(exception.message))
+            }
         }
     }
 

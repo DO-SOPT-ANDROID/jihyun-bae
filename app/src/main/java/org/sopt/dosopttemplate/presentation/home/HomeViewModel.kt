@@ -24,13 +24,14 @@ class HomeViewModel @Inject constructor(
 
     private fun getListUsers(page: Int) {
         viewModelScope.launch {
-            reqresRepository.getListUsers(page)
-                .onSuccess { listUser ->
-                    _listUserState.value = UiState.Success(listUser)
+            _listUserState.value = UiState.Loading
+            runCatching {
+                reqresRepository.getListUsers(page).collect() { userList ->
+                    _listUserState.value = UiState.Success(userList)
                 }
-                .onFailure { exception: Throwable ->
-                    _listUserState.value = UiState.Error(exception.message)
-                }
+            }.onFailure { exception: Throwable ->
+                _listUserState.value = UiState.Error(exception.message)
+            }
         }
     }
 

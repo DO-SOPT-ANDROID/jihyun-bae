@@ -28,13 +28,13 @@ class MyPageViewModel @Inject constructor(
     private fun getUserInfo() {
         viewModelScope.launch {
             _getUserInfoState.emit(UiState.Loading)
-            authRepository.getUserInfo(_memberId)
-                .onSuccess { userInfo ->
+            runCatching {
+                authRepository.getUserInfo(_memberId).collect() { userInfo ->
                     _getUserInfoState.emit(UiState.Success(userInfo))
                 }
-                .onFailure { exception: Throwable ->
-                    _getUserInfoState.emit(UiState.Error(exception.message))
-                }
+            }.onFailure { exception: Throwable ->
+                _getUserInfoState.emit(UiState.Error(exception.message))
+            }
         }
     }
 

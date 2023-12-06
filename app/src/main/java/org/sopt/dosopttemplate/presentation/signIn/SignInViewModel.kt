@@ -26,16 +26,16 @@ class SignInViewModel @Inject constructor(
     fun signIn() {
         viewModelScope.launch {
             _signInState.emit(UiState.Loading)
-            authRepository.signIn(
-                username = id.value,
-                password = password.value
-            )
-                .onSuccess { userData ->
+            runCatching {
+                authRepository.signIn(
+                    username = id.value,
+                    password = password.value
+                ).collect() { userData ->
                     _signInState.emit(UiState.Success(userData))
                 }
-                .onFailure { exception: Throwable ->
-                    _signInState.emit(UiState.Error(exception.message))
-                }
+            }.onFailure { exception: Throwable ->
+                _signInState.emit(UiState.Error(exception.message))
+            }
         }
     }
 
