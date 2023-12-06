@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import org.sopt.dosopttemplate.domain.repository.AuthRepository
+import org.sopt.dosopttemplate.domain.usecase.SignUpUseCase
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
     val id = MutableStateFlow("")
     val password = MutableStateFlow("")
@@ -43,7 +43,7 @@ class SignUpViewModel @Inject constructor(
         viewModelScope.launch {
             _signUpState.emit(UiState.Loading)
             runCatching {
-                authRepository.signUp(
+                signUpUseCase(
                     username = id.value,
                     nickname = nickname.value,
                     password = password.value

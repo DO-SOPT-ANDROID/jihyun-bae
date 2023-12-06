@@ -7,17 +7,19 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.model.UserInfo
-import org.sopt.dosopttemplate.domain.repository.AuthRepository
-import org.sopt.dosopttemplate.domain.repository.UserRepository
+import org.sopt.dosopttemplate.domain.usecase.ClearUserDataSourceUseCase
+import org.sopt.dosopttemplate.domain.usecase.GetUserIdUseCase
+import org.sopt.dosopttemplate.domain.usecase.GetUserInfoUseCase
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
-    private val authRepository: AuthRepository,
-    private val userRepository: UserRepository
+    private val getUserIdUseCase: GetUserIdUseCase,
+    private val clearUserDataSourceUseCase: ClearUserDataSourceUseCase,
+    private val getUserInfoUseCase: GetUserInfoUseCase
 ) : ViewModel() {
-    private val _memberId = userRepository.getUserId()
+    private val _memberId = getUserIdUseCase()
     private val _getUserInfoState = MutableSharedFlow<UiState<UserInfo>>()
     val getUserInfoState = _getUserInfoState.asSharedFlow()
 
@@ -29,7 +31,7 @@ class MyPageViewModel @Inject constructor(
         viewModelScope.launch {
             _getUserInfoState.emit(UiState.Loading)
             runCatching {
-                authRepository.getUserInfo(_memberId).collect() { userInfo ->
+                getUserInfoUseCase(_memberId).collect() { userInfo ->
                     _getUserInfoState.emit(UiState.Success(userInfo))
                 }
             }.onFailure { exception: Throwable ->
@@ -38,5 +40,5 @@ class MyPageViewModel @Inject constructor(
         }
     }
 
-    fun clearUserDataSource() = userRepository.clearUserDataSource()
+    fun clearUserDataSource() = clearUserDataSourceUseCase()
 }

@@ -8,15 +8,19 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.model.UserData
-import org.sopt.dosopttemplate.domain.repository.AuthRepository
-import org.sopt.dosopttemplate.domain.repository.UserRepository
+import org.sopt.dosopttemplate.domain.usecase.GetAutoLoginUseCase
+import org.sopt.dosopttemplate.domain.usecase.SetAutoLoginUseCase
+import org.sopt.dosopttemplate.domain.usecase.SetUserIdUseCase
+import org.sopt.dosopttemplate.domain.usecase.SignInUseCase
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val userRepository: UserRepository,
-    private val authRepository: AuthRepository,
+    private val setAuthLoginUseCase: SetAutoLoginUseCase,
+    private val setUserIdUseCase: SetUserIdUseCase,
+    private val getAuthLoginUseCase: GetAutoLoginUseCase,
+    private val signInUseCase: SignInUseCase
 ) : ViewModel() {
     val id = MutableStateFlow("")
     val password = MutableStateFlow("")
@@ -27,7 +31,7 @@ class SignInViewModel @Inject constructor(
         viewModelScope.launch {
             _signInState.emit(UiState.Loading)
             runCatching {
-                authRepository.signIn(
+                signInUseCase(
                     username = id.value,
                     password = password.value
                 ).collect() { userData ->
@@ -40,11 +44,9 @@ class SignInViewModel @Inject constructor(
     }
 
     fun setAutoLogin(id: Int) {
-        with(userRepository) {
-            setAutoLogin(true)
-            setUserId(id)
-        }
+        setAuthLoginUseCase(true)
+        setUserIdUseCase(id)
     }
 
-    fun getAutoLogin() = userRepository.getAutoLogin()
+    fun getAutoLogin() = getAuthLoginUseCase()
 }

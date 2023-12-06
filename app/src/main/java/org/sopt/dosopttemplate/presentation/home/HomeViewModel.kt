@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.model.ReqresUser
-import org.sopt.dosopttemplate.domain.repository.ReqresRepository
+import org.sopt.dosopttemplate.domain.usecase.GetListUsersUseCase
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val reqresRepository: ReqresRepository
+    private val getListUsersUseCase: GetListUsersUseCase
 ) : ViewModel() {
     private val _listUserState = MutableStateFlow<UiState<List<ReqresUser>>>(UiState.Empty)
     val listUserState = _listUserState.asStateFlow()
@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             _listUserState.value = UiState.Loading
             runCatching {
-                reqresRepository.getListUsers(page).collect() { userList ->
+                getListUsersUseCase(page).collect() { userList ->
                     _listUserState.value = UiState.Success(userList)
                 }
             }.onFailure { exception: Throwable ->
