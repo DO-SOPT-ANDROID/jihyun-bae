@@ -28,11 +28,9 @@ class SignUpViewModel @Inject constructor(
             isIdValid() && isPasswordValid() && isNicknameValid() && isMBTIValid()
     }
 
-    fun isIdValid(): Boolean =
-        id.value.length in MIN_ID_LENGTH..MAX_ID_LENGTH && id.value.isNotBlank()
+    fun isIdValid(): Boolean = id.value.matches(ID_REGEX)
 
-    fun isPasswordValid(): Boolean =
-        password.value.length in MIN_PASSWORD_LENGTH..MAX_PASSWORD_LENGTH && password.value.isNotBlank()
+    fun isPasswordValid(): Boolean = password.value.matches(PASSWORD_REGEX)
 
     fun isNicknameValid(): Boolean = nickname.value.isNotBlank()
 
@@ -56,11 +54,12 @@ class SignUpViewModel @Inject constructor(
     }
 
     companion object {
-        private const val MIN_ID_LENGTH = 6
-        private const val MAX_ID_LENGTH = 10
-        private const val MIN_PASSWORD_LENGTH = 8
-        private const val MAX_PASSWORD_LENGTH = 12
+        private const val ID_PATTERN = "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{6,10}"
+        private const val PASSWORD_PATTERN =
+            "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#%^&*()])[a-zA-Z0-9!@#%^&*()]{6,12}"
         private const val MBTI_PATTERN = "^[EI][NS][FT][JP]\$"
+        private val ID_REGEX = Regex(ID_PATTERN)
+        private val PASSWORD_REGEX = Regex(PASSWORD_PATTERN)
         private val MBTI_REGEX = Regex(MBTI_PATTERN)
     }
 }
