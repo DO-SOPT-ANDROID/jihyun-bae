@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSource
+package org.sopt.dosopttemplate.data.datasource.local
 
 import org.sopt.dosopttemplate.data.model.local.ProfileEntity
 

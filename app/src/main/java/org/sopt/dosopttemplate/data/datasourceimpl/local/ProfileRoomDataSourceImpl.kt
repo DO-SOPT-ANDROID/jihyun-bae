@@ -1,7 +1,7 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSourceImpl
+package org.sopt.dosopttemplate.data.datasourceimpl.local
 
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.ProfileRoomDataSource
-import org.sopt.dosopttemplate.data.datasource.local.Database.ProfileRoomDatabase
+import org.sopt.dosopttemplate.data.datasource.local.ProfileRoomDataSource
+import org.sopt.dosopttemplate.data.database.database.ProfileRoomDatabase
 import org.sopt.dosopttemplate.data.model.local.ProfileEntity
 import javax.inject.Inject
 

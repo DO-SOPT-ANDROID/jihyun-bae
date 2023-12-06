@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.sopt.dosopttemplate.data.datasource.local.DataSourceImpl.UserDataSourceImpl.Companion.FILE_NAME
+import org.sopt.dosopttemplate.data.datasourceimpl.local.UserDataSourceImpl.Companion.FILE_NAME
 import javax.inject.Singleton
 
 @Module

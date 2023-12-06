@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSource
+package org.sopt.dosopttemplate.data.datasource.local
 
 interface UserDataSource {
     fun setUserId(id: Int)

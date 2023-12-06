@@ -1,8 +1,8 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSourceImpl
+package org.sopt.dosopttemplate.data.datasourceimpl.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.UserDataSource
+import org.sopt.dosopttemplate.data.datasource.local.UserDataSource
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(

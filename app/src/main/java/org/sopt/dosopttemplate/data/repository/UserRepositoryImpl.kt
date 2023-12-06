@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.repository
 
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.UserDataSource
+import org.sopt.dosopttemplate.data.datasource.local.UserDataSource
 import org.sopt.dosopttemplate.domain.repository.UserRepository
 import javax.inject.Inject
 

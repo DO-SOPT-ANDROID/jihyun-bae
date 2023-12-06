@@ -1,8 +1,8 @@
-package org.sopt.dosopttemplate.data.datasource.local.Database
+package org.sopt.dosopttemplate.data.database.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import org.sopt.dosopttemplate.data.datasource.local.Dao.ProfileDao
+import org.sopt.dosopttemplate.data.database.dao.ProfileDao
 import org.sopt.dosopttemplate.data.model.local.ProfileEntity
 
 @Database(entities = [ProfileEntity::class], version = 1)
