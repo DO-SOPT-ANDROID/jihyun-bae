@@ -48,43 +48,34 @@ class SignUpActivity : BindingActivity<ActivitySignUpBinding>(R.layout.activity_
             binding.layoutSignUpId.error =
                 id.takeIf { it.isNotEmpty() }?.takeIf { !signUpViewModel.isIdValid() }
                     ?.let { getString(SignUpErrorType.ID.errorMessage) }
-            signUpViewModel.setSignUpValid()
         }.launchIn(lifecycleScope)
 
         signUpViewModel.password.flowWithLifecycle(lifecycle).onEach { password ->
             binding.layoutSignUpPassword.error =
                 password.takeIf { it.isNotEmpty() }?.takeIf { !signUpViewModel.isPasswordValid() }
                     ?.let { getString(SignUpErrorType.PASSWORD.errorMessage) }
-            signUpViewModel.setSignUpValid()
         }.launchIn(lifecycleScope)
 
         signUpViewModel.nickname.flowWithLifecycle(lifecycle).onEach { nickname ->
             binding.layoutSignUpNickname.error =
                 nickname.takeIf { it.isNotEmpty() }?.takeIf { !signUpViewModel.isNicknameValid() }
                     ?.let { getString(SignUpErrorType.NICKNAME.errorMessage) }
-            signUpViewModel.setSignUpValid()
         }.launchIn(lifecycleScope)
 
         signUpViewModel.mbti.flowWithLifecycle(lifecycle).onEach { mbti ->
             binding.layoutSignUpMbti.error =
                 mbti.takeIf { it.isNotEmpty() }?.takeIf { !signUpViewModel.isMBTIValid() }
                     ?.let { getString(SignUpErrorType.MBTI.errorMessage) }
-            signUpViewModel.setSignUpValid()
         }.launchIn(lifecycleScope)
 
         signUpViewModel.signUpEnabled.flowWithLifecycle(lifecycle).onEach { signUpEnabled ->
-            if (signUpEnabled) {
-                with(binding.btnSignUpSignUp) {
-                    isEnabled = true
-                    backgroundTintList = ContextCompat.getColorStateList(context, R.color.main_2)
-                    setTextColor(getColor(R.color.gray_100))
-                }
-            } else {
-                with(binding.btnSignUpSignUp) {
-                    isEnabled = false
-                    backgroundTintList = ContextCompat.getColorStateList(context, R.color.gray_200)
-                    setTextColor(getColor(R.color.gray_400))
-                }
+            val bgColorResId = if (signUpEnabled) R.color.main_2 else R.color.gray_200
+            val textColorResId = if (signUpEnabled) R.color.gray_100 else R.color.gray_400
+
+            with(binding.btnSignUpSignUp) {
+                isEnabled = signUpEnabled
+                backgroundTintList = ContextCompat.getColorStateList(context, bgColorResId)
+                setTextColor(ContextCompat.getColor(context, textColorResId))
             }
         }.launchIn(lifecycleScope)
 

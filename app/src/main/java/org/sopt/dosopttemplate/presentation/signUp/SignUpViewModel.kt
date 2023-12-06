@@ -4,7 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
 import org.sopt.dosopttemplate.util.UiState
@@ -18,15 +22,13 @@ class SignUpViewModel @Inject constructor(
     val password = MutableStateFlow("")
     val nickname = MutableStateFlow("")
     val mbti = MutableStateFlow("")
-    private val _signUpEnabled = MutableStateFlow(false)
-    val signUpEnabled = _signUpEnabled.asStateFlow()
+    val signUpEnabled: StateFlow<Boolean> = combine(
+        id, password, nickname, mbti
+    ) { _, _, _, _ ->
+        isIdValid() && isPasswordValid() && isNicknameValid() && isMBTIValid()
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), false)
     private val _signUpState = MutableStateFlow<UiState<Unit>>(UiState.Empty)
     val signUpState = _signUpState.asStateFlow()
-
-    fun setSignUpValid() {
-        _signUpEnabled.value =
-            isIdValid() && isPasswordValid() && isNicknameValid() && isMBTIValid()
-    }
 
     fun isIdValid(): Boolean = id.value.matches(ID_REGEX)
 
