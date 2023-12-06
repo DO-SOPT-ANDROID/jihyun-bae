@@ -31,8 +31,8 @@
     <string name="sign_up_mbti_hint">MBTI를 입력해 주세요.</string>
     <string name="sign_up_start">시작하기</string>
     <string name="sign_up_success">회원가입에 성공하였습니다!</string>
-    <string name="sign_up_id_error">6~10글자의 아이디를 입력해 주세요.</string>
-    <string name="sign_up_password_error">8~12글자의 비밀번호를 입력해 주세요.</string>
+    <string name="sign_up_id_error">영문, 숫자가 포함된 6~10글자 이내의 아이디를 입력해 주세요.</string>
+    <string name="sign_up_password_error">영문, 숫자, 특수문자가 포함된 6~12글자 이내의 비밀번호를 입력해 주세요.</string>
     <string name="sign_up_nickname_error">한 글자 이상의 닉네임을 입력해 주세요.</string>
     <string name="sign_up_mbti_error">형식에 맞는 MBTI를 입력해 주세요.</string>
     <string name="sign_up_failed">회원가입에 실패하였습니다!</string>
