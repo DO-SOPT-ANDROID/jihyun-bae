@@ -17,7 +17,7 @@ class UserRepositoryImpl @Inject constructor(
         userDataSource.setAutoLogin(isAutoLogin)
     }
 
-    override fun getAutoLogin() = userDataSource.getAutoLoogin()
+    override fun getAutoLogin() = userDataSource.getAutoLogin()
 
     override fun clearUserDataSource() {
         userDataSource.clearUserDataSource()

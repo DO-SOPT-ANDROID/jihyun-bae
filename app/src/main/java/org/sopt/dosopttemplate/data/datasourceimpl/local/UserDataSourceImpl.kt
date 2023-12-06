@@ -18,7 +18,7 @@ class UserDataSourceImpl @Inject constructor(
         dataStore.edit { putBoolean(AUTO_LOGIN, isAutoLogin) }
     }
 
-    override fun getAutoLoogin(): Boolean = dataStore.getBoolean(AUTO_LOGIN, false)
+    override fun getAutoLogin(): Boolean = dataStore.getBoolean(AUTO_LOGIN, false)
 
     override fun clearUserDataSource() {
         dataStore.edit { clear() }
