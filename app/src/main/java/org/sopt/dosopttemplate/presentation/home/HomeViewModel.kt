@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(
         getListUsers(PAGE)
     }
 
-    fun getListUsers(page: Int) {
+    private fun getListUsers(page: Int) {
         viewModelScope.launch {
             reqresRepository.getListUsers(page)
                 .onSuccess { listUser ->

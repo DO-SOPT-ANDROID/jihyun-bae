@@ -3,8 +3,8 @@ package org.sopt.dosopttemplate.presentation.myPage
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.model.UserInfo
 import org.sopt.dosopttemplate.domain.repository.AuthRepository
@@ -18,8 +18,8 @@ class MyPageViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
     private val _memberId = userRepository.getUserId()
-    private val _getUserInfoState = MutableStateFlow<UiState<UserInfo>>(UiState.Empty)
-    val getUserInfoState = _getUserInfoState.asStateFlow()
+    private val _getUserInfoState = MutableSharedFlow<UiState<UserInfo>>()
+    val getUserInfoState = _getUserInfoState.asSharedFlow()
 
     init {
         getUserInfo()
@@ -27,13 +27,13 @@ class MyPageViewModel @Inject constructor(
 
     private fun getUserInfo() {
         viewModelScope.launch {
-            _getUserInfoState.value = UiState.Loading
+            _getUserInfoState.emit(UiState.Loading)
             authRepository.getUserInfo(_memberId)
                 .onSuccess { userInfo ->
-                    _getUserInfoState.value = UiState.Success(userInfo)
+                    _getUserInfoState.emit(UiState.Success(userInfo))
                 }
                 .onFailure { exception: Throwable ->
-                    _getUserInfoState.value = UiState.Error(exception.message)
+                    _getUserInfoState.emit(UiState.Error(exception.message))
                 }
         }
     }
