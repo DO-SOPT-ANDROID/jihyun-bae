@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.repository
 
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.UserDataSource
+import org.sopt.dosopttemplate.data.datasource.local.UserDataSource
 import org.sopt.dosopttemplate.domain.repository.UserRepository
 import javax.inject.Inject
 
@@ -17,7 +17,7 @@ class UserRepositoryImpl @Inject constructor(
         userDataSource.setAutoLogin(isAutoLogin)
     }
 
-    override fun getAutoLogin() = userDataSource.getAutoLoogin()
+    override fun getAutoLogin() = userDataSource.getAutoLogin()
 
     override fun clearUserDataSource() {
         userDataSource.clearUserDataSource()

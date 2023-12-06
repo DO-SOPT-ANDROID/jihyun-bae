@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import org.sopt.dosopttemplate.data.datasource.local.Database.ProfileRoomDatabase
+import org.sopt.dosopttemplate.data.database.database.ProfileRoomDatabase
 import javax.inject.Singleton
 
 @Module

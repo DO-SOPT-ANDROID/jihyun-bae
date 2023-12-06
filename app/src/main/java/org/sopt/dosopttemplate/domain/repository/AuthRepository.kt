@@ -1,5 +1,6 @@
 package org.sopt.dosopttemplate.domain.repository
 
+import kotlinx.coroutines.flow.Flow
 import org.sopt.dosopttemplate.domain.model.UserData
 import org.sopt.dosopttemplate.domain.model.UserInfo
 
@@ -8,14 +9,14 @@ interface AuthRepository {
         username: String,
         nickname: String,
         password: String
-    ): Result<Unit>
+    ): Flow<Unit>
 
     suspend fun signIn(
         username: String,
         password: String
-    ): Result<UserData>
+    ): Flow<UserData>
 
     suspend fun getUserInfo(
         userId: Int
-    ): Result<UserInfo>
+    ): Flow<UserInfo>
 }

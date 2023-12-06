@@ -1,9 +1,9 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSource
+package org.sopt.dosopttemplate.data.datasource.local
 
 interface UserDataSource {
     fun setUserId(id: Int)
     fun getUserId(): Int
     fun setAutoLogin(isAutoLogin: Boolean)
-    fun getAutoLoogin(): Boolean
+    fun getAutoLogin(): Boolean
     fun clearUserDataSource()
 }

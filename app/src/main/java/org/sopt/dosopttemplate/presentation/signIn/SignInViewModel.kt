@@ -3,47 +3,50 @@ package org.sopt.dosopttemplate.presentation.signIn
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.sopt.dosopttemplate.domain.model.UserData
-import org.sopt.dosopttemplate.domain.repository.AuthRepository
-import org.sopt.dosopttemplate.domain.repository.UserRepository
+import org.sopt.dosopttemplate.domain.usecase.GetAutoLoginUseCase
+import org.sopt.dosopttemplate.domain.usecase.SetAutoLoginUseCase
+import org.sopt.dosopttemplate.domain.usecase.SetUserIdUseCase
+import org.sopt.dosopttemplate.domain.usecase.SignInUseCase
 import org.sopt.dosopttemplate.util.UiState
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val userRepository: UserRepository,
-    private val authRepository: AuthRepository,
+    private val setAuthLoginUseCase: SetAutoLoginUseCase,
+    private val setUserIdUseCase: SetUserIdUseCase,
+    private val getAuthLoginUseCase: GetAutoLoginUseCase,
+    private val signInUseCase: SignInUseCase
 ) : ViewModel() {
     val id = MutableStateFlow("")
     val password = MutableStateFlow("")
-    private val _signInState = MutableStateFlow<UiState<UserData>>(UiState.Empty)
-    val signInState = _signInState.asStateFlow()
+    private val _signInState = MutableSharedFlow<UiState<UserData>>()
+    val signInState = _signInState.asSharedFlow()
 
     fun signIn() {
         viewModelScope.launch {
-            _signInState.value = UiState.Loading
-            authRepository.signIn(
-                username = id.value,
-                password = password.value
-            )
-                .onSuccess { userData ->
-                    _signInState.value = UiState.Success(userData)
+            _signInState.emit(UiState.Loading)
+            runCatching {
+                signInUseCase(
+                    username = id.value,
+                    password = password.value
+                ).collect() { userData ->
+                    _signInState.emit(UiState.Success(userData))
                 }
-                .onFailure { exception: Throwable ->
-                    _signInState.value = UiState.Error(exception.message)
-                }
+            }.onFailure { exception: Throwable ->
+                _signInState.emit(UiState.Error(exception.message))
+            }
         }
     }
 
     fun setAutoLogin(id: Int) {
-        with(userRepository) {
-            setAutoLogin(true)
-            setUserId(id)
-        }
+        setAuthLoginUseCase(true)
+        setUserIdUseCase(id)
     }
 
-    fun getAutoLogin() = userRepository.getAutoLogin()
+    fun getAutoLogin() = getAuthLoginUseCase()
 }

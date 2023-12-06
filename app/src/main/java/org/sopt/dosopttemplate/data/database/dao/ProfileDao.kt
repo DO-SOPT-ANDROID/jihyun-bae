@@ -1,4 +1,4 @@
-package org.sopt.dosopttemplate.data.datasource.local.Dao
+package org.sopt.dosopttemplate.data.database.dao
 
 import androidx.room.Dao
 import androidx.room.Delete

@@ -1,8 +1,8 @@
-package org.sopt.dosopttemplate.data.datasource.local.DataSourceImpl
+package org.sopt.dosopttemplate.data.datasourceimpl.local
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.UserDataSource
+import org.sopt.dosopttemplate.data.datasource.local.UserDataSource
 import javax.inject.Inject
 
 class UserDataSourceImpl @Inject constructor(
@@ -18,7 +18,7 @@ class UserDataSourceImpl @Inject constructor(
         dataStore.edit { putBoolean(AUTO_LOGIN, isAutoLogin) }
     }
 
-    override fun getAutoLoogin(): Boolean = dataStore.getBoolean(AUTO_LOGIN, false)
+    override fun getAutoLogin(): Boolean = dataStore.getBoolean(AUTO_LOGIN, false)
 
     override fun clearUserDataSource() {
         dataStore.edit { clear() }

@@ -8,6 +8,9 @@ ex) [1주차 도전 과제 노션 링크](https://council.busan.go.kr/council/fr
 [Activity 생명 주기](https://jihyunniiii.notion.site/Activity-eb6a15649e00477088bfe713b8407612?pvs=4)
 [Intent](https://jihyunniiii.notion.site/Intent-1f822a2e61e6489883b044b886d6c0a1?pvs=4)
 
+#### 7️⃣ 7주차
+[Flow](https://jihyunniiii.notion.site/Flow-b9d891d7409e4f7796ad9125dc1300a6?pvs=4)
+
 ## 템플릿 설명
 레포지터리에는 하나의 브랜치가 있습니다.
 

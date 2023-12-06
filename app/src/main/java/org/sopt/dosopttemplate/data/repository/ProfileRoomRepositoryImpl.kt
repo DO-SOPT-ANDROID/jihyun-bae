@@ -1,6 +1,6 @@
 package org.sopt.dosopttemplate.data.repository
 
-import org.sopt.dosopttemplate.data.datasource.local.DataSource.ProfileRoomDataSource
+import org.sopt.dosopttemplate.data.datasource.local.ProfileRoomDataSource
 import org.sopt.dosopttemplate.data.model.local.ProfileEntity
 import org.sopt.dosopttemplate.domain.model.Profile
 import org.sopt.dosopttemplate.domain.repository.ProfileRoomRepository
